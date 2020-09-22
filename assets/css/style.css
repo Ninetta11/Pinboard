@@ -1,0 +1,121 @@
+* {
+  font-family: "Roboto" sans-serif;
+}
+
+main {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.intro {
+  font-size: larger;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    top: 100%;
+  }
+  to {
+    opacity: 1;
+    top: 0%;
+  }
+}
+
+.jumbotron,
+.question-row,
+.answer-list,
+.lb-container,
+.admin-container {
+  animation: slideUp 1.5s forwards;
+}
+
+.timer-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer {
+  font-size: xx-large;
+}
+
+.answer {
+  font-size: x-large;
+  background-color: lightgray;
+  margin-bottom: 10px;
+}
+
+.answer-list {
+  text-align: left;
+}
+
+.answer-list p {
+  margin-bottom: 0;
+  padding: 10px 20px;
+}
+
+.answer-list .answer-col {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.response {
+  font-size: xxx-large;
+}
+
+.question-row {
+  margin-bottom: 10px;
+}
+
+.timer-title-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-title {
+  font-size: x-large;
+  margin-bottom: 0;
+}
+
+.stat-header {
+  text-align: left;
+}
+
+.stat-content {
+  text-align: right;
+}
+
+.modal-footer {
+  display: none;
+}
+
+.stat-status {
+  font-size: x-large;
+}
+
+.pb-title {
+  padding-bottom: 10px;
+}
+
+.btn-row {
+  padding: 10px;
+}
+
+.config-container {
+  text-align: initial;
+  padding: 15px;
+}
+
+.cq-row {
+  padding: 10px;
+}
+
+.customQuestions {
+  padding: 15px;
+}
+
+.localConfiguration {
+  padding: 15px;
+}

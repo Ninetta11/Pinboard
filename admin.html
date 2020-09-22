@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pinboard Administration</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar nabar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Pinboard</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="bulletin.html">Class Pinboard</a>
+          </li>
+          <li class="nav-item"></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="container admin-container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="pb-title">Pinboard Administration</h1>
+          </div>
+        </div>
+        <div class="container config-container">
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Local configuration:</h3>
+            </div>
+          </div>
+          <div class="container localConfiguration" id="localConfiguration">
+            <div class="col-md-12 gc-col" id="gc-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Configuration Item</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="config-listing" id="config-listing">
+                  <tr>
+                    <td scope="row">Enter custom field:</td>
+                    <td scope="row">
+                      <input
+                        type="text"
+                        id="customTimer"
+                        class="form-control"
+                      />
+                    </td>
+                    <td scope="row">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-success"
+                        id="timerSave"
+                        disabled
+                      >
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-danger"
+                        id="removeTimer"
+                      >
+                        Remove Field
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="container config-container">
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Notice Board:</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button
+                type="button"
+                class="btn btn-sm btn-primary"
+                id="addQuestion"
+                data-toggle="modal"
+                data-target="#customQuestionModal"
+              >
+                Add Notice
+              </button>
+            </div>
+          </div>
+          <div class="container customQuestions" id="customQuestions">
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Notice</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="question-listing" id="question-listing"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Custom Question Modal -->
+      <div
+        class="modal fade"
+        id="customQuestionModal"
+        tabindex="-1"
+        role="dialog"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">
+                Create custom question
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="customQuestionForm">
+                  <div class="form-group">
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="question">Enter question:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" id="question" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="choice-1">Choice 1:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" id="choice-1" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="choice-2">Choice 2:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" id="choice-2" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="choice-3">Choice 3:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" id="choice-3" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="choice-4">Choice 4:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" id="choice-4" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="answer">Select choice for answer:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <select class="custom-select" id="answer">
+                          <option selected>Select answer...</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    id="addCustomQuestion"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="assets/js/admin.js"></script>
+</html>
