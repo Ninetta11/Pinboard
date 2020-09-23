@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Bulletin</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #002147">
+            <a class="navbar-brand" href="index.html">Pinboard</a>
+            <img class="" src="assets/download.jpeg" height="50px" width="50px">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link active" href="bulletin.html">Bulletin - <span id="Year-Group"></span><span
+                            class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container content">
+        <div class="row">
+
+            <aside class="col-md-4">
+                <article id="schedule" class="card border-primary">
+                    <div class="card-header text-white text-center bg-primary">
+                        <h1 id="date"></h1>
+                        <div id="weather">
+                            <img id="weather-icon">
+                            <h4 id="temp"></h4>
+                            <h5 class="card-title"></h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="timetable">
+                            <ul>
+
+                            </ul>
+                        </div>
+                        <div id="notes">
+
+                        </div>
+                    </div>
+                </article>
+            </aside>
+
+            <div class="col-md-8">
+                <article id="notices" class="row card border-danger">
+                    <h3 class="text-center card-header text-white bg-danger"><i class="fas fa-thumbtack"></i> Important
+                        Notices <i class="fas fa-thumbtack"></i></h3>
+                    <div class="card-body">
+
+                    </div>
+                </article>
+
+                <article id="curricula" class="row card border-secondary">
+                    <h3 class="card-header text-white text-center bg-secondary"><i class="fas fa-thumbtack"></i> Extra
+                        Curricula Activities <i class="fas fa-thumbtack"></i></h3>
+                    <div class="card-body">
+
+                    </div>
+                </article>
+
+                <div class="row">
+                    <div class="col-md-7">
+
+                        <article id="canteen" class="row card border-secondary">
+                            <h3 class="card-header text-white text-center bg-secondary"> <i
+                                    class="fas fa-thumbtack"></i> Canteen Menu <i class="fas fa-thumbtack"></i></h3>
+                            <div class="card-body">
+
+                            </div>
+                        </article>
+
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">
+
+                        <article id="book" class="row card border-secondary">
+                            <h4 class="card-header text-white text-center bg-secondary"><i class="fas fa-thumbtack"></i>
+                                Recommended Reading <i class="fas fa-thumbtack"></i></h4>
+                            <div class="card-body">
+
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <article id="message-board" class="row card border-info">
+                    <h3 class="card-header text-white text-center bg-info"><i class="fas fa-thumbtack"></i> Message
+                        Board <i class="fas fa-thumbtack"></i></h3>
+                    <div class="card-body">
+
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="navbar navbar-expand-lg position-sticky navbar-dark bg-dark">
+    </footer>
+
+
+
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="assets/js/bulletin.js"></script>
+</body>
+
+</html>
