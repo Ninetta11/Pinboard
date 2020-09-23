@@ -45,6 +45,7 @@
       </nav>
     </header>
     <main>
+      <div class="alert-container"></div>
       <div class="container admin-container">
         <div class="row">
           <div class="col-md-12">
@@ -54,90 +55,43 @@
         <div class="container config-container">
           <div class="row">
             <div class="col-md-12">
-              <h3>Local configuration:</h3>
-            </div>
-          </div>
-          <div class="container localConfiguration" id="localConfiguration">
-            <div class="col-md-12 gc-col" id="gc-col">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Configuration Item</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody class="config-listing" id="config-listing">
-                  <tr>
-                    <td scope="row">Enter custom field:</td>
-                    <td scope="row">
-                      <input
-                        type="text"
-                        id="customTimer"
-                        class="form-control"
-                      />
-                    </td>
-                    <td scope="row">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-success"
-                        id="timerSave"
-                        disabled
-                      >
-                        Save
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-danger"
-                        id="removeTimer"
-                      >
-                        Remove Field
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="container config-container">
-          <div class="row">
-            <div class="col-md-12">
-              <h3>Notice Board:</h3>
+              <h3>Year Groups:</h3>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button
-                type="button"
-                class="btn btn-sm btn-primary"
-                id="addQuestion"
-                data-toggle="modal"
-                data-target="#customQuestionModal"
-              >
-                Add Notice
-              </button>
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary add-button"
+                  id="addYearGroup"
+                  data-toggle="modal"
+                  data-target="#addYearGroupModal"
+                >
+                  Add
+                </button>
+              </div>
             </div>
           </div>
-          <div class="container customQuestions" id="customQuestions">
+          <div class="container customYearGroups" id="customYearGroups">
             <div class="col-md-12 cq-col" id="cq-col">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">Notice</th>
+                    <th scope="col">Year Group</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody class="question-listing" id="question-listing"></tbody>
+                <tbody class="yearGroup-listing" id="yearGroup-listing"></tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-      <!-- Custom Question Modal -->
+      <!-- Custom Year Group Modal -->
       <div
         class="modal fade"
-        id="customQuestionModal"
+        id="addYearGroupModal"
         tabindex="-1"
         role="dialog"
       >
@@ -145,72 +99,27 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="modalTitle">
-                Create custom question
+                Add Year Group
               </h4>
             </div>
             <div class="modal-body">
               <div class="container">
-                <form id="customQuestionForm">
+                <form id="addYearGroupForm">
                   <div class="form-group">
                     <div class="row cq-row">
                       <div class="col-md-6">
-                        <label for="question">Enter question:</label>
+                        <label for="yearGroupName">Enter Year Group Name:</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="text" id="question" class="form-control" />
+                        <input type="text" id="yearGroupName" class="form-control" />
                       </div>
                     </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="choice-1">Choice 1:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" id="choice-1" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="choice-2">Choice 2:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" id="choice-2" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="choice-3">Choice 3:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" id="choice-3" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="choice-4">Choice 4:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" id="choice-4" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="answer">Select choice for answer:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <select class="custom-select" id="answer">
-                          <option selected>Select answer...</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                        </select>
-                      </div>
                     </div>
                   </div>
                   <button
-                    type="button"
+                    type="submit"
                     class="btn btn-primary btn-sm"
-                    id="addCustomQuestion"
+                    id="confirmYearGroup"
                   >
                     Add
                   </button>
