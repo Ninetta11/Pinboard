@@ -17,6 +17,16 @@ footer {
     margin-top: 100px;
 }
 
+.left-align {
+    position: absolute;
+    left: 5%;
+}
+
+.right-align {
+    position: absolute;
+    right: 5%;
+}
+
 .content {
     flex: 1 0 auto;
 }
