@@ -88,6 +88,7 @@
           </div>
         </div>
       </div>
+      
       <!-- Custom Year Group Modal -->
       <div
         class="modal fade"
@@ -122,6 +123,44 @@
                     id="confirmYearGroup"
                   >
                     Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timetable Modal -->
+        <div
+        class="modal fade"
+        id="timetableModal"
+        tabindex="-1"
+        role="dialog"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">
+                Manage Timetable
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="timetableForm">
+                  <div class="form-group timetable-form"></div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmTimetable"
+                  >
+                    Save
                   </button>
                   <button
                     type="button"

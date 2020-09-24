@@ -10,6 +10,8 @@ const confirmYearGroupEl = document.getElementById("confirmYearGroup");
 const yearGroupListingEl = document.querySelector(".yearGroup-listing");
 const alertContainerEl = document.querySelector(".alert-container");
 const modalEl = document.querySelector(".modal");
+const timetableFormEl = document.querySelector(".timetable-form");
+const confirmTimetableEl = document.getElementById("confirmTimetable");
 
 // Functions
 const clearYearGroupResults = () => {
@@ -54,6 +56,7 @@ const refreshAdmin = () => {
 const addYearGroupHandler = () => {
   const yearGroup = {
     name: yearGroupNameEl.value,
+    timetable: [],
   };
   const queryUrl = apiUrlPrefix + "classes.json" + apiSuffix;
   fetch(queryUrl, {
@@ -105,9 +108,19 @@ const createYearGroupRow = (yearGroup) => {
 
   const yearGroupDelete = document.createElement("button");
   yearGroupDelete.setAttribute("class", "btn btn-sm btn-danger action");
+  yearGroupDelete.setAttribute("id", "deleteYearGroup-button");
   yearGroupDelete.setAttribute("data-value", yearGroup.id);
   yearGroupDelete.textContent = "Delete";
 
+  const manageTimetable = document.createElement("button");
+  manageTimetable.setAttribute("class", "btn btn-sm btn-primary mr-1 action");
+  manageTimetable.setAttribute("data-value", yearGroup.id);
+  manageTimetable.setAttribute("id", "manageTimetable-button");
+  manageTimetable.setAttribute("data-toggle", "modal");
+  manageTimetable.setAttribute("data-target", "#timetableModal");
+  manageTimetable.textContent = "Manage Timetable";
+
+  yearGroupConfig.appendChild(manageTimetable);
   yearGroupConfig.appendChild(yearGroupDelete);
   yearGroupRow.appendChild(yearGroupName);
   yearGroupRow.appendChild(yearGroupConfig);
@@ -121,16 +134,62 @@ const renderYearGroups = (yearGroups) => {
   });
 };
 
+// Manage timetable handler
+const manageTimetableHandler = (id) => {
+  for (i = 0; i < 8; i++) {
+    const timeValue = i + 9;
+    const timeValueName = `time-${timeValue}`;
+    const timeRowEl = document.createElement("div");
+    timeRowEl.classList.add("row", "cq-row");
+    const nameColEl = document.createElement("div");
+    nameColEl.classList.add("col-md-6");
+    const timeLabelEl = document.createElement("label");
+    timeLabelEl.setAttribute("for", timeValueName);
+    timeLabelEl.textContent = `${timeValue}:00`;
+    const timeInputColEl = document.createElement("div");
+    timeInputColEl.classList.add("col-md-6");
+    const timeInputEl = document.createElement("input");
+    timeInputEl.setAttribute("type", "text");
+    timeInputEl.setAttribute("id", timeValueName);
+    timeInputEl.classList.add("form-control");
+
+    timeInputColEl.appendChild(timeInputEl);
+    nameColEl.appendChild(timeLabelEl);
+    timeRowEl.appendChild(nameColEl);
+    timeRowEl.appendChild(timeInputColEl);
+    timetableFormEl.appendChild(timeRowEl);
+  }
+  confirmTimetableEl.setAttribute("data-value", id);
+};
+
+const saveTimetableHandler = (id) => {
+  console.log(id);
+};
+
 // Event listeners
+confirmTimetableEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  saveTimetableHandler(event.target.getAttribute("data-value"));
+});
+
 confirmYearGroupEl.addEventListener("click", (event) => {
   event.preventDefault();
   addYearGroupHandler();
 });
 
 yearGroupListingEl.addEventListener("click", (event) => {
-  if (event.target.getAttribute("data-value")) {
-    deleteYearGroupHandler(event.target.getAttribute("data-value"));
+  switch (event.target.id) {
+    case "manageTimetable-button":
+      manageTimetableHandler(event.target.getAttribute("data-value"));
+      break;
+    case "deleteYearGroup-button":
+      deleteYearGroupHandler(event.target.getAttribute("data-value"));
+      break;
   }
+  // if (event.target.getAttribute("data-value")) {
+  //   console.log(event);
+  //   //deleteYearGroupHandler(event.target.getAttribute("data-value"));
+  // }
 });
 
 alertContainerEl.addEventListener("click", () => {
