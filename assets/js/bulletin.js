@@ -31,24 +31,30 @@ function displayWeather() {
 // display book details and image of cover based on input 
 function displayBook() {
     var searchPhrase = "the-scarlet-letter";
+    var searchAuthor = "Nathaniel Hawthorne";
     var queryURL = "http://openlibrary.org/search.json?title=" + searchPhrase;
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
-        var isbn = response.docs[0].isbn[0];
-        var bookTitle = response.docs[0].title;
-        var authorName = response.docs[0].author_name[0];
+        for (var i = 0; response.docs.length; i++) {
+            var authorName = response.docs[i].author_name[0];
 
-        var title = document.createElement("h5");
-        title.textContent = bookTitle;
-        var author = document.createElement("h6");
-        author.textContent = authorName;
-        var bookcover = document.createElement("img");
-        bookcover.setAttribute("src", "http://covers.openlibrary.org/b/isbn/" + isbn + "-M.jpg");
+            if (authorName === searchAuthor) {
+                var isbn = response.docs[i].isbn[0];
+                var bookTitle = response.docs[i].title;
 
-        book.append(title, author, bookcover);
+                var title = document.createElement("h5");
+                title.textContent = bookTitle;
+                var author = document.createElement("h6");
+                author.textContent = authorName;
+                var bookcover = document.createElement("img");
+                bookcover.setAttribute("src", "http://covers.openlibrary.org/b/isbn/" + isbn + "-M.jpg");
+
+                book.append(title, author, bookcover);
+                break;
+            }
+        }
     })
 };
 
