@@ -1,3 +1,44 @@
+* {
+  font-family: "Roboto" sans-serif;
+}
+
+.admin-main {
+  padding-top: 50px;
+  text-align: center;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    top: 100%;
+  }
+  to {
+    opacity: 1;
+    top: 0%;
+  }
+}
+
+.admin-container {
+  animation: slideUp 1.5s forwards;
+}
+
+.pb-title {
+  padding-bottom: 10px;
+}
+
+.btn-row {
+  padding: 10px;
+}
+
+.config-container {
+  text-align: initial;
+  padding: 15px;
+}
+
+.cq-row {
+  padding: 10px;
+}
+
 .form-group {
   margin-top: 60px;
 }
@@ -86,5 +127,4 @@ footer {
     max-height: fit-content;
     margin-left: 10px;
 }
-
 

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pinboard Administration</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar nabar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Pinboard</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="bulletin.html">Class Pinboard</a>
+          </li>
+          <li class="nav-item"></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="admin-main">
+      <div class="alert-container"></div>
+      <div class="container admin-container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="pb-title">Pinboard Administration</h1>
+          </div>
+        </div>
+        <div class="container config-container">
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Year Groups:</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary add-button"
+                  id="addYearGroup"
+                  data-toggle="modal"
+                  data-target="#addYearGroupModal"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container customYearGroups" id="customYearGroups">
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Year Group</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="yearGroup-listing" id="yearGroup-listing"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Custom Year Group Modal -->
+      <div
+        class="modal fade"
+        id="addYearGroupModal"
+        tabindex="-1"
+        role="dialog"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">
+                Add Year Group
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="addYearGroupForm">
+                  <div class="form-group">
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="yearGroupName">Enter Year Group Name:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" id="yearGroupName" class="form-control" />
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmYearGroup"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timetable Modal -->
+        <div
+        class="modal fade"
+        id="timetableModal"
+        tabindex="-1"
+        role="dialog"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">
+                Manage Timetable
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="timetableForm">
+                  <div class="form-group timetable-form"></div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmTimetable"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="assets/js/admin.js"></script>
+</html>
