@@ -9,7 +9,7 @@ const yearGroupNameEl = document.getElementById("yearGroupName");
 const confirmYearGroupEl = document.getElementById("confirmYearGroup");
 const yearGroupListingEl = document.querySelector(".yearGroup-listing");
 const alertContainerEl = document.querySelector(".alert-container");
-const modalEl = document.querySelector(".modal");
+const modalEl = document.querySelectorAll(".modal");
 const timetableFormEl = document.querySelector(".timetable-form");
 const confirmTimetableEl = document.getElementById("confirmTimetable");
 
@@ -26,7 +26,13 @@ const clearAlert = () => {
 
 const closeModal = () => {
   document.querySelector(".modal-backdrop").remove();
-  modalEl.classList.remove("show");
+  modalEl.forEach((el) => {
+    el.classList.remove("show");
+  });
+};
+
+const clearTimetable = () => {
+  timetableFormEl.innerHTML = "";
 };
 
 const alertHandler = (message, status) => {
@@ -134,8 +140,23 @@ const renderYearGroups = (yearGroups) => {
   });
 };
 
+const getTimetableById = (id) => {
+  const timetable = yearGroups.find((element) => element.id === id);
+  if (timetable.timetable) {
+    return timetable.timetable;
+  } else {
+    const tempTimetable = [];
+    for (i = 0; i < 8; i++) {
+      tempTimetable.push("Free Block");
+    }
+    return tempTimetable;
+  }
+};
+
 // Manage timetable handler
 const manageTimetableHandler = (id) => {
+  const timetable = getTimetableById(id);
+  clearTimetable();
   for (i = 0; i < 8; i++) {
     const timeValue = i + 9;
     const timeValueName = `time-${timeValue}`;
@@ -152,6 +173,9 @@ const manageTimetableHandler = (id) => {
     timeInputEl.setAttribute("type", "text");
     timeInputEl.setAttribute("id", timeValueName);
     timeInputEl.classList.add("form-control");
+    timetable[i]
+      ? (timeInputEl.value = timetable[i])
+      : (timeInputEl.value = "Free Block");
 
     timeInputColEl.appendChild(timeInputEl);
     nameColEl.appendChild(timeLabelEl);
@@ -163,7 +187,25 @@ const manageTimetableHandler = (id) => {
 };
 
 const saveTimetableHandler = (id) => {
-  console.log(id);
+  const updatedTimetable = {
+    timetable: [],
+  };
+  const offset = 9;
+  for (i = 0; i < 8; i++) {
+    updatedTimetable.timetable.push(
+      document.getElementById(`time-${i + offset}`).value
+    );
+  }
+
+  const queryUrl = apiUrlPrefix + "classes/" + `${id}.json` + apiSuffix;
+  fetch(queryUrl, {
+    method: "PATCH",
+    body: JSON.stringify(updatedTimetable),
+  }).then((res) => {
+    alertHandler(res.statusText, "SUCCESS");
+    closeModal();
+    refreshAdmin();
+  });
 };
 
 // Event listeners
@@ -198,3 +240,5 @@ alertContainerEl.addEventListener("click", () => {
 
 // Main Program
 fetchYearGroups();
+
+// Testing
