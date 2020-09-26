@@ -54,16 +54,39 @@
         </div>
         <div class="container config-container">
           <div class="row">
-            <div class="col-md-12">
-              <h3>Year Groups:</h3>
+            <div class="col-md-11">
+              <h3>Notices Admin:</h3>
+            </div>
+            <div class="col-md-1">
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button type="button" class="btn btn-sm btn-primary notice-add-button" id="addNotice" data-toggle="modal" data-target="#addNoticeModal">
+                  Add
+                </button>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
+          <div class="container notice-container" id="notice-container">
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Notice</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="notice-listing" id="notice-listing"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-11">
+              <h3>Year Groups:</h3>
+            </div>
+            <div class="col-md-1">
               <div class="btn-toolbar mb-2" role="toolbar">
                 <button
                   type="button"
-                  class="btn btn-sm btn-primary add-button"
+                  class="btn btn-sm btn-primary add-button float-right"
                   id="addYearGroup"
                   data-toggle="modal"
                   data-target="#addYearGroupModal"
@@ -89,6 +112,54 @@
         </div>
       </div>
       
+      <!-- Notices Admin -->
+      <div
+        class="modal fade"
+        id="addNoticeModal"
+        tabindex="-1"
+        role="dialog"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">
+                Add Notice
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="addNoticeForm">
+                  <div class="form-group">
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="noticeText">Enter Notice:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <textarea id="noticeText" class="form-control" rows="2"></textarea>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmNotice"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <!-- Custom Year Group Modal -->
       <div
         class="modal fade"

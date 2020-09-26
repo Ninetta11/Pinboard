@@ -24,6 +24,7 @@
 
 .pb-title {
   padding-bottom: 10px;
+  text-shadow: none;
 }
 
 .btn-row {
@@ -89,42 +90,42 @@ a {
   text-align: center;
 }
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 header {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
-body  {
-    display: flex;
-    flex-direction: column;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
-    flex-shrink: 0;
-    margin-top: 100px;
+  flex-shrink: 0;
+  margin-top: 100px;
 }
 
 .left-align {
-    position: absolute;
-    left: 5%;
+  position: absolute;
+  left: 5%;
 }
 
 .right-align {
-    position: absolute;
-    right: 5%;
+  position: absolute;
+  right: 5%;
 }
 
 .content {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .card {
-    margin-bottom: 30px;
-    min-height: 150px;
-    max-height: fit-content;
-    margin-left: 10px;
+  margin-bottom: 30px;
+  min-height: 150px;
+  max-height: fit-content;
+  margin-left: 10px;
 }
-
