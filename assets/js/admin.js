@@ -1,5 +1,6 @@
 // Globals
 let yearGroups = [];
+let notices = [];
 const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
@@ -8,6 +9,9 @@ const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
 const yearGroupNameEl = document.getElementById("yearGroupName");
 const confirmYearGroupEl = document.getElementById("confirmYearGroup");
 const yearGroupListingEl = document.querySelector(".yearGroup-listing");
+const noticeTextEl = document.getElementById("noticeText");
+const confirmNoticeEl = document.getElementById("confirmNotice");
+const noticeListingEl = document.querySelector(".notice-listing");
 const alertContainerEl = document.querySelector(".alert-container");
 const modalEl = document.querySelectorAll(".modal");
 const timetableFormEl = document.querySelector(".timetable-form");
@@ -18,6 +22,12 @@ const clearYearGroupResults = () => {
   yearGroups = [];
   yearGroupListingEl.innerHTML = "";
   yearGroupNameEl.value = "";
+};
+
+const clearNotices = () => {
+  notices = [];
+  noticeListingEl.innerHTML = "";
+  noticeTextEl.value = "";
 };
 
 const clearAlert = () => {
@@ -56,18 +66,42 @@ const alertHandler = (message, status) => {
 
 const refreshAdmin = () => {
   clearYearGroupResults();
-  fetchYearGroups();
+  clearNotices();
+  fetchData("NOTICE");
+  fetchData("YEAR_GROUP");
 };
 
-const addYearGroupHandler = () => {
-  const yearGroup = {
-    name: yearGroupNameEl.value,
-    timetable: [],
-  };
-  const queryUrl = apiUrlPrefix + "classes.json" + apiSuffix;
+const getCollection = (type) => {
+  switch (type) {
+    case "NOTICE":
+      return "notices";
+      break;
+    case "YEAR_GROUP":
+      return "classes";
+      break;
+  }
+};
+
+const addHandler = (type) => {
+  const collection = getCollection(type);
+  let body = "";
+  switch (type) {
+    case "NOTICE":
+      body = {
+        noticeContent: noticeTextEl.value,
+      };
+      break;
+    case "YEAR_GROUP":
+      body = {
+        name: yearGroupNameEl.value,
+        timetable: [],
+      };
+      break;
+  }
+  const queryUrl = apiUrlPrefix + `${collection}.json` + apiSuffix;
   fetch(queryUrl, {
     method: "POST",
-    body: JSON.stringify(yearGroup),
+    body: JSON.stringify(body),
   }).then((res) => {
     alertHandler(res.statusText, "SUCCESS");
     closeModal();
@@ -75,9 +109,11 @@ const addYearGroupHandler = () => {
   });
 };
 
-// Delete year group
-const deleteYearGroupHandler = (id) => {
-  const queryUrl = apiUrlPrefix + `classes/${id}.json` + apiSuffix;
+// Delete handler
+const deleteHandler = (id, type) => {
+  const collection = getCollection(type);
+
+  const queryUrl = apiUrlPrefix + `${collection}/${id}.json` + apiSuffix;
   fetch(queryUrl, {
     method: "DELETE",
   }).then((res) => {
@@ -86,25 +122,35 @@ const deleteYearGroupHandler = (id) => {
   });
 };
 
-// Fetch year groups
-const fetchYearGroups = () => {
-  const queryUrl = apiUrlPrefix + "classes.json" + apiSuffix;
+// Fetch data
+const fetchData = (type) => {
+  const collection = getCollection(type);
+  const queryUrl = apiUrlPrefix + `${collection}.json` + apiSuffix;
   fetch(queryUrl)
     .then((res) => res.json())
     .then((data) => {
       for (let key in data) {
-        yearGroups.push({
-          ...data[key],
-          id: key,
-        });
+        switch (type) {
+          case "NOTICE":
+            notices.push({
+              ...data[key],
+              id: key,
+            });
+            break;
+          case "YEAR_GROUP":
+            yearGroups.push({
+              ...data[key],
+              id: key,
+            });
+            break;
+        }
       }
-      renderYearGroups(yearGroups);
+      renderData(type);
     });
 };
 
 // Output year groups
 const createYearGroupRow = (yearGroup) => {
-  const yearGroupListingEl = document.getElementById("yearGroup-listing");
   const yearGroupRow = document.createElement("tr");
   const yearGroupName = document.createElement("td");
   yearGroupName.setAttribute("scope", "row");
@@ -114,7 +160,7 @@ const createYearGroupRow = (yearGroup) => {
 
   const yearGroupDelete = document.createElement("button");
   yearGroupDelete.setAttribute("class", "btn btn-sm btn-danger action");
-  yearGroupDelete.setAttribute("id", "deleteYearGroup-button");
+  yearGroupDelete.setAttribute("id", "delete-button");
   yearGroupDelete.setAttribute("data-value", yearGroup.id);
   yearGroupDelete.textContent = "Delete";
 
@@ -133,11 +179,41 @@ const createYearGroupRow = (yearGroup) => {
   yearGroupListingEl.appendChild(yearGroupRow);
 };
 
-// Render year groups
-const renderYearGroups = (yearGroups) => {
-  yearGroups.forEach((yearGroup, index) => {
-    createYearGroupRow(yearGroup, index);
-  });
+// Output notices
+const createNoticeRow = (notice) => {
+  const noticeRow = document.createElement("tr");
+  const noticeName = document.createElement("td");
+  noticeName.setAttribute("scope", "row");
+  noticeName.textContent = notice.noticeContent;
+  const noticeConfig = document.createElement("td");
+  noticeConfig.setAttribute("scope", "row");
+
+  const noticeDelete = document.createElement("button");
+  noticeDelete.setAttribute("class", "btn btn-sm btn-danger action");
+  noticeDelete.setAttribute("id", "delete-button");
+  noticeDelete.setAttribute("data-value", notice.id);
+  noticeDelete.textContent = "Delete";
+
+  noticeConfig.appendChild(noticeDelete);
+  noticeRow.appendChild(noticeName);
+  noticeRow.appendChild(noticeConfig);
+  noticeListingEl.appendChild(noticeRow);
+};
+
+// Render data
+const renderData = (type) => {
+  switch (type) {
+    case "NOTICE":
+      notices.forEach((notice) => {
+        createNoticeRow(notice);
+      });
+      break;
+    case "YEAR_GROUP":
+      yearGroups.forEach((yearGroup) => {
+        createYearGroupRow(yearGroup);
+      });
+      break;
+  }
 };
 
 const getTimetableById = (id) => {
@@ -216,7 +292,18 @@ confirmTimetableEl.addEventListener("click", (event) => {
 
 confirmYearGroupEl.addEventListener("click", (event) => {
   event.preventDefault();
-  addYearGroupHandler();
+  addHandler("YEAR_GROUP");
+});
+
+confirmNoticeEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  addHandler("NOTICE");
+});
+
+noticeListingEl.addEventListener("click", (event) => {
+  if (event.target.id === "delete-button") {
+    deleteHandler(event.target.getAttribute("data-value"), "NOTICE");
+  }
 });
 
 yearGroupListingEl.addEventListener("click", (event) => {
@@ -224,14 +311,10 @@ yearGroupListingEl.addEventListener("click", (event) => {
     case "manageTimetable-button":
       manageTimetableHandler(event.target.getAttribute("data-value"));
       break;
-    case "deleteYearGroup-button":
-      deleteYearGroupHandler(event.target.getAttribute("data-value"));
+    case "delete-button":
+      deleteHandler(event.target.getAttribute("data-value"), "YEAR_GROUP");
       break;
   }
-  // if (event.target.getAttribute("data-value")) {
-  //   console.log(event);
-  //   //deleteYearGroupHandler(event.target.getAttribute("data-value"));
-  // }
 });
 
 alertContainerEl.addEventListener("click", () => {
@@ -239,6 +322,7 @@ alertContainerEl.addEventListener("click", () => {
 });
 
 // Main Program
-fetchYearGroups();
+fetchData("YEAR_GROUP");
+fetchData("NOTICE");
 
 // Testing
