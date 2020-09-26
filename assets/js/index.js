@@ -43,3 +43,7 @@ var storedData = JSON.parse(localStorage.getItem)("yearGroup");
 console.log(storedData);
 
 // key defaultYearGroup
+
+// Dropdown menu takes you to the relevant page when you click
+
+// Query Parameters
