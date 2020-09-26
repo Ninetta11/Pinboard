@@ -1,97 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pinboard</title>
 
-    <!-- Added link to the jQuery Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Added a link to Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <!--Font Awesome CDN Stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <!--Moment.js CDN Stylesheet-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"
-        integrity="sha512-Dz4zO7p6MrF+VcOD6PUbA08hK1rv0hDv/wGuxSUjImaUYxRyK2gLC6eQWVqyDN9IM1X/kUA8zkykJS/gEVOd3w=="
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
     <!-- CSS file and reset-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="assets/css/style.css" />
 
-<body>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
     <main>
-        <div class="container-fluid hero-container">
-            <video id="home-hero-video" autoplay muted loop>
-                <source type="video/mp4" src="./assets/video/stockfoot_004.mp4" />
-            </video>
-            <div class="background-mobile"></div>
-            <div class="hero-content container-fluid text-center">
-                <div class="container">
-                    <!-- <img src="./assets/images/school-logo-dropb.png" alt="school logo" width="100" height="100"> -->
-                    <h1 class="text-center">Welcome to Degrassi High Pinboard </h1>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6 text-center">
-                                <label for="exampleFormControlSelect1" class="choose"><strong>Choose your Year
-                                        Group</strong></label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Year 7</option>
-                                    <option>Year 8</option>
-                                    <option>Year 9</option>
-                                    <option>Year 10</option>
-                                    <option>Year 11</option>
-                                    <option>Year 12</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3"></div>
-                        </div>
-                    </div>
+      <div class="container-fluid hero-container">
+        <video id="home-hero-video" autoplay muted loop>
+          <source type="video/mp4" src="assets/video/stockfoot_004.mp4" />
+        </video>
+        <div class="hero-content container-fluid text-center">
+          <div class="container">
+            <h1 class="text-center">Welcome to Degrassi High Pinboard</h1>
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6 text-center">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Select Year Group
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  ></div>
                 </div>
-                <footer class="footer">
-                    <div class="row">
-                    </div>
-                    <div class="col-md-12 contact-details text-center">
-                        <p class="address">
-                            <span class="streetAddress">
-                                <strong>xxx School Street, Hornsby Heights, Sydney, 2000</strong>
-                            </span>
-                            <span class="contact"> ~
-                                <a target="_blank" href="https://goo.gl/maps/iFoZRXdSwdu9XX9m9">
-                                    <strong> Get Directions </strong>
-                                </a>
-                                ~ PH:
-                                <a href="#">
-                                    <span>
-                                        <strong>+61 (2) 9328-XXXX </strong>
-                                    </span>
-                                </a>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="row"></div>
+      <div class="col-md-12 contact-details text-center">
+        <p class="address">
+          <span class="streetAddress">
+            <strong>xxx School Street, Hornsby Heights, Sydney, 2000</strong>
+          </span>
+          <span class="contact">
+            ~
+            <a target="_blank" href="https://goo.gl/maps/iFoZRXdSwdu9XX9m9">
+              <strong> Get Directions </strong>
+            </a>
+            ~ PH:
+            <a href="#">
+              <span>
+                <strong>+61 (2) 9328-XXXX </strong>
+              </span>
+            </a>
+          </span>
+        </p>
+        <p class="directions"></p>
+      </div>
+      <div class="row">
+        <div class="col-md-12 copyright">
+          <p>All Rights Reserved &#169; Degrassi High 2020.</p>
+        </div>
+      </div>
+    </footer>
 
-                            </span>
-                        </p>
-                        <p class="directions">
-
-                        </p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 copyright">
-                            <p>All Rights Reserved &#169; Degrassi High 2020.</p>
-                        </div>
-                    </div>
-                </footer>
-                <!-- App specific scripts-->
-                <script src="assets/js/index.js"></script>
-</body>
-
+    <!-- App specific scripts-->
+    <script src="assets/js/index.js"></script>
+  </body>
 </html>
