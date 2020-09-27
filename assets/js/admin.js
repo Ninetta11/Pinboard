@@ -1,6 +1,7 @@
 // Globals
 let yearGroups = [];
 let notices = [];
+let canteenItems = [];
 const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
@@ -16,6 +17,10 @@ const alertContainerEl = document.querySelector(".alert-container");
 const modalEl = document.querySelectorAll(".modal");
 const timetableFormEl = document.querySelector(".timetable-form");
 const confirmTimetableEl = document.getElementById("confirmTimetable");
+const canteenItemNameEl = document.getElementById("canteenItemName");
+const canteenItemPriceEl = document.getElementById("canteenItemPrice");
+const canteenListingEl = document.querySelector(".canteen-listing");
+const confirmCanteenEl = document.getElementById("confirmCanteen");
 
 // Functions
 const clearYearGroupResults = () => {
@@ -28,6 +33,13 @@ const clearNotices = () => {
   notices = [];
   noticeListingEl.innerHTML = "";
   noticeTextEl.value = "";
+};
+
+const clearCanteenItems = () => {
+  canteenItems = [];
+  canteenListingEl.innerHTML = "";
+  canteenItemNameEl.value = "";
+  canteenItemPriceEl.value = "";
 };
 
 const clearAlert = () => {
@@ -67,14 +79,19 @@ const alertHandler = (message, status) => {
 const refreshAdmin = () => {
   clearYearGroupResults();
   clearNotices();
+  clearCanteenItems();
   fetchData("NOTICE");
   fetchData("YEAR_GROUP");
+  fetchData("CANTEEN");
 };
 
 const getCollection = (type) => {
   switch (type) {
     case "NOTICE":
       return "notices";
+      break;
+    case "CANTEEN":
+      return "canteenItems";
       break;
     case "YEAR_GROUP":
       return "classes";
@@ -89,6 +106,12 @@ const addHandler = (type) => {
     case "NOTICE":
       body = {
         noticeContent: noticeTextEl.value,
+      };
+      break;
+    case "CANTEEN":
+      body = {
+        name: canteenItemNameEl.value,
+        price: canteenItemPriceEl.value,
       };
       break;
     case "YEAR_GROUP":
@@ -133,6 +156,12 @@ const fetchData = (type) => {
         switch (type) {
           case "NOTICE":
             notices.push({
+              ...data[key],
+              id: key,
+            });
+            break;
+          case "CANTEEN":
+            canteenItems.push({
               ...data[key],
               id: key,
             });
@@ -200,12 +229,42 @@ const createNoticeRow = (notice) => {
   noticeListingEl.appendChild(noticeRow);
 };
 
+// Output canteen items
+const createCanteenRow = (item) => {
+  const canteenRowEl = document.createElement("tr");
+  const canteenNameEl = document.createElement("td");
+  canteenNameEl.setAttribute("scope", "row");
+  canteenNameEl.textContent = item.name;
+  const canteenPriceEl = document.createElement("td");
+  canteenPriceEl.setAttribute("scope", "row");
+  canteenPriceEl.textContent = item.price;
+  const canteenConfigEl = document.createElement("td");
+  canteenConfigEl.setAttribute("scope", "row");
+
+  const canteenDeleteEl = document.createElement("button");
+  canteenDeleteEl.setAttribute("class", "btn btn-sm btn-danger action");
+  canteenDeleteEl.setAttribute("id", "delete-button");
+  canteenDeleteEl.setAttribute("data-value", item.id);
+  canteenDeleteEl.textContent = "Delete";
+
+  canteenConfigEl.appendChild(canteenDeleteEl);
+  canteenRowEl.appendChild(canteenNameEl);
+  canteenRowEl.appendChild(canteenPriceEl);
+  canteenRowEl.appendChild(canteenConfigEl);
+  canteenListingEl.appendChild(canteenRowEl);
+};
+
 // Render data
 const renderData = (type) => {
   switch (type) {
     case "NOTICE":
       notices.forEach((notice) => {
         createNoticeRow(notice);
+      });
+      break;
+    case "CANTEEN":
+      canteenItems.forEach((item) => {
+        createCanteenRow(item);
       });
       break;
     case "YEAR_GROUP":
@@ -300,9 +359,20 @@ confirmNoticeEl.addEventListener("click", (event) => {
   addHandler("NOTICE");
 });
 
+confirmCanteenEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  addHandler("CANTEEN");
+});
+
 noticeListingEl.addEventListener("click", (event) => {
   if (event.target.id === "delete-button") {
     deleteHandler(event.target.getAttribute("data-value"), "NOTICE");
+  }
+});
+
+canteenListingEl.addEventListener("click", (event) => {
+  if (event.target.id === "delete-button") {
+    deleteHandler(event.target.getAttribute("data-value"), "CANTEEN");
   }
 });
 
@@ -324,5 +394,6 @@ alertContainerEl.addEventListener("click", () => {
 // Main Program
 fetchData("YEAR_GROUP");
 fetchData("NOTICE");
+fetchData("CANTEEN");
 
 // Testing
