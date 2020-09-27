@@ -1,3 +1,72 @@
+* {
+  font-family: "Roboto" sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+header {
+  margin-bottom: 100px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: 100px;
+}
+
+h1 {
+  text-shadow: black 1px 0 10px;
+}
+
+a {
+  color: white;
+}
+
+.admin-main {
+  padding-top: 50px;
+  text-align: center;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    top: 100%;
+  }
+  to {
+    opacity: 1;
+    top: 0%;
+  }
+}
+
+.admin-container {
+  animation: slideUp 1.5s forwards;
+}
+
+.pb-title {
+  padding-bottom: 10px;
+  text-shadow: none;
+}
+
+.btn-row {
+  padding: 10px;
+}
+
+.config-container {
+  text-align: initial;
+  padding: 15px;
+}
+
+.cq-row {
+  padding: 10px;
+}
+
 .form-group {
   margin-top: 60px;
 }
@@ -23,16 +92,8 @@
   color: #fff;
 }
 
-h1 {
-  text-shadow: black 1px 0 10px;
-}
-
 .choose {
   text-shadow: black 1px 0 10px;
-}
-
-a {
-  color: white;
 }
 
 .footer {
@@ -41,7 +102,6 @@ a {
   width: 100%;
   height: auto;
   line-height: 20px;
-  font-family: "Roboto", sans-serif;
 }
 
 html,
@@ -61,6 +121,19 @@ body {
 footer {
   flex-shrink: 0;
   margin-top: 100px;
+
+.copyright {
+  text-align: center;
+}
+
+.left-align {
+  position: absolute;
+  left: 5%;
+}
+
+.right-align {
+  position: absolute;
+  right: 5%;
 }
 
 .content {
@@ -81,9 +154,11 @@ footer {
   width: 400px;
   margin: 20px;
 }
+  
 .show {
   width: 400px;
 }
+  
 .address {
   color: white;
 }
@@ -92,3 +167,4 @@ footer {
   color: white;
   text-align: center;
 }
+
