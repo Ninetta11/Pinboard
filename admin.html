@@ -84,9 +84,9 @@
               </table>
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md-11">
-              <h3>Notices Admin:</h3>
+              <h3>Notices:</h3>
             </div>
             <div class="col-md-1">
               <div class="btn-toolbar mb-2" role="toolbar">
@@ -115,9 +115,9 @@
               </table>
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md-11">
-              <h3>Canteen Admin:</h3>
+              <h3>Canteen:</h3>
             </div>
             <div class="col-md-1">
               <div class="btn-toolbar mb-2" role="toolbar">
@@ -147,8 +147,114 @@
               </table>
             </div>
           </div>
+          <div class="row mt-2">
+            <div class="col-md-11">
+              <h3>Activities:</h3>
+            </div>
+            <div class="col-md-1">
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary activity-add-button"
+                  id="addActivity"
+                  data-toggle="modal"
+                  data-target="#addActivityModal"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container activities-container" id="activities-container">
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="activities-listing"
+                  id="activities-listing"
+                ></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Activities Admin -->
+      <div class="modal fade" id="addActivityModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">Add Activity</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="addActivityForm">
+                  <div class="form-group">
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="activityName">Enter Activity:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="text"
+                          id="activityName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="activityLocation">Enter Location:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="text"
+                          id="activityLocation"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="activityTime">Enter Time:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="text"
+                          id="activityTime"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmActivity"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Canteen Admin -->
       <div class="modal fade" id="addCanteenModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
