@@ -16,8 +16,14 @@ const confirmNoticeEl = document.getElementById("confirmNotice");
 const noticeListingEl = document.querySelector(".notice-listing");
 const alertContainerEl = document.querySelector(".alert-container");
 const modalEl = document.querySelectorAll(".modal");
+
+const bookNameEl = document.getElementById("bookName");
+const bookAuthorEl = document.getElementById("bookAuthor");
+const confirmBookEl = document.getElementById("confirmBook");
+
 const timetableFormEl = document.querySelector(".timetable-form");
 const confirmTimetableEl = document.getElementById("confirmTimetable");
+
 const canteenItemNameEl = document.getElementById("canteenItemName");
 const canteenItemPriceEl = document.getElementById("canteenItemPrice");
 const canteenListingEl = document.querySelector(".canteen-listing");
@@ -73,9 +79,15 @@ const clearTimetable = () => {
   timetableFormEl.innerHTML = "";
 };
 
+const clearBook = () => {
+  bookNameEl.value = "";
+  bookAuthorEl.value = "";
+};
+
 const alertHandler = (message, status) => {
   const alertEl = document.createElement("div");
   alertEl.setAttribute("role", "alert");
+
   switch (status) {
     case "ERROR":
       alertEl.setAttribute("class", "alert alert-danger");
@@ -89,6 +101,7 @@ const alertHandler = (message, status) => {
       alertEl.setAttribute("class", "alert alert-primary");
       alertEl.textContent = message;
   }
+
   alertContainerEl.appendChild(alertEl);
 };
 
@@ -147,6 +160,7 @@ const addHandler = (type) => {
       body = {
         name: yearGroupNameEl.value,
         timetable: [],
+        book: "",
       };
       break;
   }
@@ -236,7 +250,16 @@ const createYearGroupRow = (yearGroup) => {
   manageTimetable.setAttribute("data-target", "#timetableModal");
   manageTimetable.textContent = "Manage Timetable";
 
+  const manageBook = document.createElement("button");
+  manageBook.setAttribute("class", "btn btn-sm btn-primary mr-1 action");
+  manageBook.setAttribute("data-value", yearGroup.id);
+  manageBook.setAttribute("id", "manageBook-button");
+  manageBook.setAttribute("data-toggle", "modal");
+  manageBook.setAttribute("data-target", "#bookModal");
+  manageBook.textContent = "Manage Term Book";
+
   yearGroupConfig.appendChild(manageTimetable);
+  yearGroupConfig.appendChild(manageBook);
   yearGroupConfig.appendChild(yearGroupDelete);
   yearGroupRow.appendChild(yearGroupName);
   yearGroupRow.appendChild(yearGroupConfig);
@@ -361,6 +384,43 @@ const getTimetableById = (id) => {
   }
 };
 
+const getBookById = (id) => {
+  const yearGroup = yearGroups.find((element) => element.id === id);
+  if (yearGroup.book) {
+    return yearGroup.book;
+  } else {
+    return "unassigned";
+  }
+};
+
+// Manage book handler
+const manageBookHandler = (id) => {
+  const book = getBookById(id);
+  clearBook();
+  bookNameEl.value = book.name;
+  bookAuthorEl.value = book.author;
+  confirmBookEl.setAttribute("data-value", id);
+};
+
+const saveBookHandler = (id) => {
+  const updatedBook = {
+    book: {
+      name: bookNameEl.value,
+      author: bookAuthorEl.value,
+    },
+  };
+
+  const queryUrl = apiUrlPrefix + "classes/" + `${id}.json` + apiSuffix;
+  fetch(queryUrl, {
+    method: "PATCH",
+    body: JSON.stringify(updatedBook),
+  }).then((res) => {
+    alertHandler(res.statusText, "SUCCESS");
+    closeModal();
+    refreshAdmin();
+  });
+};
+
 // Manage timetable handler
 const manageTimetableHandler = (id) => {
   const timetable = getTimetableById(id);
@@ -422,6 +482,11 @@ confirmTimetableEl.addEventListener("click", (event) => {
   saveTimetableHandler(event.target.getAttribute("data-value"));
 });
 
+confirmBookEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  saveBookHandler(event.target.getAttribute("data-value"));
+});
+
 confirmYearGroupEl.addEventListener("click", (event) => {
   event.preventDefault();
   addHandler("YEAR_GROUP");
@@ -462,6 +527,9 @@ activityListingEl.addEventListener("click", (event) => {
 
 yearGroupListingEl.addEventListener("click", (event) => {
   switch (event.target.id) {
+    case "manageBook-button":
+      manageBookHandler(event.target.getAttribute("data-value"));
+      break;
     case "manageTimetable-button":
       manageTimetableHandler(event.target.getAttribute("data-value"));
       break;
