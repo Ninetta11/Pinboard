@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.html">Home</a>
-                    <a class="nav-link active" href="bulletin.html">Bulletin - <span id="Year-Group"></span><span
+                    <a class="nav-link active" href="bulletin.html">Bulletin - <span id="year-group"></span><span
                             class="sr-only">(current)</span></a>
                     <a class="nav-link" href="admin.html">Admin Login</a>
                 </div>
@@ -45,14 +45,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="timetable">
-                            <ul>
-
-                            </ul>
-                        </div>
-                        <div id="notes">
-
-                        </div>
+                        <div id="welcome"></div>
+                        <div id="timetable"></div>
+                        <div id="notes"></div>
                     </div>
                 </article>
             </aside>
@@ -61,18 +56,14 @@
                 <article class="row card border-danger">
                     <h3 class="text-center card-header text-white bg-danger"><i class="fas fa-thumbtack left-align"></i>
                         Important Notices <i class="fas fa-thumbtack right-align"></i></h3>
-                    <div id="notices" class="card-body">
-
-                    </div>
+                    <div id="notices" class="card-body"></div>
                 </article>
 
                 <article class="row card border-secondary">
                     <h3 class="card-header text-white text-center bg-secondary"><i
                             class="fas fa-thumbtack left-align"></i> Extra
                         Curricula Activities <i class="fas fa-thumbtack right-align"></i></h3>
-                    <div id="curricula" class="card-body">
-
-                    </div>
+                    <div id="activities" class="card-body"></div>
                 </article>
 
                 <div class="row">
@@ -82,9 +73,7 @@
                             <h3 class="card-header text-white text-center bg-secondary"> <i
                                     class="fas fa-thumbtack left-align"></i> Canteen Menu <i
                                     class="fas fa-thumbtack right-align"></i></h3>
-                            <div id="canteen" class="card-body">
-
-                            </div>
+                            <div id="canteen" class="card-body"></div>
                         </article>
 
                     </div>
@@ -92,23 +81,19 @@
                     <div class="col-md-4">
 
                         <article class="row card border-secondary">
-                            <h4 class="card-header text-white text-center bg-secondary"><i
+                            <h3 class="card-header text-white text-center bg-secondary"><i
                                     class="fas fa-thumbtack left-align"></i>
-                                Recommended Reading <i class="fas fa-thumbtack right-align"></i></h4>
-                            <div id="book" class="card-body">
-
-                            </div>
+                                Term Text <i class="fas fa-thumbtack right-align"></i></h3>
+                            <div id="book" class="card-body"></div>
                         </article>
                     </div>
                 </div>
 
-                <article id="message-board" class="row card border-info">
+                <article class="row card border-info">
                     <h3 class="card-header text-white text-center bg-info"><i class="fas fa-thumbtack left-align"></i>
                         Message
                         Board <i class="fas fa-thumbtack right-align"></i></h3>
-                    <div class="card-body">
-
-                    </div>
+                    <div id="message-board" class="card-body"></div>
                 </article>
             </div>
         </div>
@@ -116,9 +101,6 @@
 
     <footer class="navbar navbar-expand-lg position-sticky navbar-dark bg-dark">
     </footer>
-
-
-
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
