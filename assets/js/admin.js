@@ -1,6 +1,8 @@
 // Globals
 let yearGroups = [];
 let notices = [];
+let canteenItems = [];
+let activities = [];
 const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
@@ -16,6 +18,16 @@ const alertContainerEl = document.querySelector(".alert-container");
 const modalEl = document.querySelectorAll(".modal");
 const timetableFormEl = document.querySelector(".timetable-form");
 const confirmTimetableEl = document.getElementById("confirmTimetable");
+const canteenItemNameEl = document.getElementById("canteenItemName");
+const canteenItemPriceEl = document.getElementById("canteenItemPrice");
+const canteenListingEl = document.querySelector(".canteen-listing");
+const confirmCanteenEl = document.getElementById("confirmCanteen");
+const activityNameEl = document.getElementById("activityName");
+const activityLocationEl = document.getElementById("activityLocation");
+const activityDateEl = document.getElementById("activityDate");
+const activityTimeEl = document.getElementById("activityTime");
+const activityListingEl = document.querySelector(".activities-listing");
+const confirmActivityEl = document.getElementById("confirmActivity");
 
 // Functions
 const clearYearGroupResults = () => {
@@ -28,6 +40,22 @@ const clearNotices = () => {
   notices = [];
   noticeListingEl.innerHTML = "";
   noticeTextEl.value = "";
+};
+
+const clearCanteenItems = () => {
+  canteenItems = [];
+  canteenListingEl.innerHTML = "";
+  canteenItemNameEl.value = "";
+  canteenItemPriceEl.value = "";
+};
+
+const clearActivities = () => {
+  activities = [];
+  activityListingEl.innerHTML = "";
+  activityNameEl.value = "";
+  activityLocationEl.value = "";
+  activityDateEl.value = "";
+  activityTimeEl.value = "";
 };
 
 const clearAlert = () => {
@@ -67,14 +95,24 @@ const alertHandler = (message, status) => {
 const refreshAdmin = () => {
   clearYearGroupResults();
   clearNotices();
+  clearCanteenItems();
+  clearActivities();
   fetchData("NOTICE");
   fetchData("YEAR_GROUP");
+  fetchData("CANTEEN");
+  fetchData("ACTIVITIES");
 };
 
 const getCollection = (type) => {
   switch (type) {
     case "NOTICE":
       return "notices";
+      break;
+    case "CANTEEN":
+      return "canteenItems";
+      break;
+    case "ACTIVITIES":
+      return "activities";
       break;
     case "YEAR_GROUP":
       return "classes";
@@ -89,6 +127,20 @@ const addHandler = (type) => {
     case "NOTICE":
       body = {
         noticeContent: noticeTextEl.value,
+      };
+      break;
+    case "CANTEEN":
+      body = {
+        name: canteenItemNameEl.value,
+        price: canteenItemPriceEl.value,
+      };
+      break;
+    case "ACTIVITIES":
+      body = {
+        name: activityNameEl.value,
+        location: activityLocationEl.value,
+        date: activityDateEl.value,
+        time: activityTimeEl.value,
       };
       break;
     case "YEAR_GROUP":
@@ -133,6 +185,18 @@ const fetchData = (type) => {
         switch (type) {
           case "NOTICE":
             notices.push({
+              ...data[key],
+              id: key,
+            });
+            break;
+          case "CANTEEN":
+            canteenItems.push({
+              ...data[key],
+              id: key,
+            });
+            break;
+          case "ACTIVITIES":
+            activities.push({
               ...data[key],
               id: key,
             });
@@ -200,12 +264,80 @@ const createNoticeRow = (notice) => {
   noticeListingEl.appendChild(noticeRow);
 };
 
+// Output canteen items
+const createCanteenRow = (item) => {
+  const canteenRowEl = document.createElement("tr");
+  const canteenNameEl = document.createElement("td");
+  canteenNameEl.setAttribute("scope", "row");
+  canteenNameEl.textContent = item.name;
+  const canteenPriceEl = document.createElement("td");
+  canteenPriceEl.setAttribute("scope", "row");
+  canteenPriceEl.textContent = item.price;
+  const canteenConfigEl = document.createElement("td");
+  canteenConfigEl.setAttribute("scope", "row");
+
+  const canteenDeleteEl = document.createElement("button");
+  canteenDeleteEl.setAttribute("class", "btn btn-sm btn-danger action");
+  canteenDeleteEl.setAttribute("id", "delete-button");
+  canteenDeleteEl.setAttribute("data-value", item.id);
+  canteenDeleteEl.textContent = "Delete";
+
+  canteenConfigEl.appendChild(canteenDeleteEl);
+  canteenRowEl.appendChild(canteenNameEl);
+  canteenRowEl.appendChild(canteenPriceEl);
+  canteenRowEl.appendChild(canteenConfigEl);
+  canteenListingEl.appendChild(canteenRowEl);
+};
+
+// Output activities
+const createActivityRow = (item) => {
+  const activityItemRowEl = document.createElement("tr");
+  const activityItemNameEl = document.createElement("td");
+  activityItemNameEl.setAttribute("scope", "row");
+  activityItemNameEl.textContent = item.name;
+  const activityItemLocationEl = document.createElement("td");
+  activityItemLocationEl.setAttribute("scope", "row");
+  activityItemLocationEl.textContent = item.location;
+  const activityItemDateEl = document.createElement("td");
+  activityItemDateEl.setAttribute("scope", "row");
+  activityItemDateEl.textContent = item.date;
+  const activityItemTimeEl = document.createElement("td");
+  activityItemTimeEl.setAttribute("scope", "row");
+  activityItemTimeEl.textContent = item.time;
+  const activityItemConfigEl = document.createElement("td");
+  activityItemConfigEl.setAttribute("scope", "row");
+
+  const activityItemDeleteEl = document.createElement("button");
+  activityItemDeleteEl.setAttribute("class", "btn btn-sm btn-danger action");
+  activityItemDeleteEl.setAttribute("id", "delete-button");
+  activityItemDeleteEl.setAttribute("data-value", item.id);
+  activityItemDeleteEl.textContent = "Delete";
+
+  activityItemConfigEl.appendChild(activityItemDeleteEl);
+  activityItemRowEl.appendChild(activityItemNameEl);
+  activityItemRowEl.appendChild(activityItemLocationEl);
+  activityItemRowEl.appendChild(activityItemDateEl);
+  activityItemRowEl.appendChild(activityItemTimeEl);
+  activityItemRowEl.appendChild(activityItemConfigEl);
+  activityListingEl.appendChild(activityItemRowEl);
+};
+
 // Render data
 const renderData = (type) => {
   switch (type) {
     case "NOTICE":
       notices.forEach((notice) => {
         createNoticeRow(notice);
+      });
+      break;
+    case "CANTEEN":
+      canteenItems.forEach((item) => {
+        createCanteenRow(item);
+      });
+      break;
+    case "ACTIVITIES":
+      activities.forEach((item) => {
+        createActivityRow(item);
       });
       break;
     case "YEAR_GROUP":
@@ -300,9 +432,31 @@ confirmNoticeEl.addEventListener("click", (event) => {
   addHandler("NOTICE");
 });
 
+confirmCanteenEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  addHandler("CANTEEN");
+});
+
+confirmActivityEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  addHandler("ACTIVITIES");
+});
+
 noticeListingEl.addEventListener("click", (event) => {
   if (event.target.id === "delete-button") {
     deleteHandler(event.target.getAttribute("data-value"), "NOTICE");
+  }
+});
+
+canteenListingEl.addEventListener("click", (event) => {
+  if (event.target.id === "delete-button") {
+    deleteHandler(event.target.getAttribute("data-value"), "CANTEEN");
+  }
+});
+
+activityListingEl.addEventListener("click", (event) => {
+  if (event.target.id === "delete-button") {
+    deleteHandler(event.target.getAttribute("data-value"), "ACTIVITIES");
   }
 });
 
@@ -324,5 +478,7 @@ alertContainerEl.addEventListener("click", () => {
 // Main Program
 fetchData("YEAR_GROUP");
 fetchData("NOTICE");
+fetchData("CANTEEN");
+fetchData("ACTIVITIES");
 
 // Testing

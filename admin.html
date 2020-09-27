@@ -53,31 +53,6 @@
           </div>
         </div>
         <div class="container config-container">
-          <div class="row">
-            <div class="col-md-11">
-              <h3>Notices Admin:</h3>
-            </div>
-            <div class="col-md-1">
-              <div class="btn-toolbar mb-2" role="toolbar">
-                <button type="button" class="btn btn-sm btn-primary notice-add-button" id="addNotice" data-toggle="modal" data-target="#addNoticeModal">
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="container notice-container" id="notice-container">
-            <div class="col-md-12 cq-col" id="cq-col">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Notice</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody class="notice-listing" id="notice-listing"></tbody>
-              </table>
-            </div>
-          </div>
           <div class="row mt-2">
             <div class="col-md-11">
               <h3>Year Groups:</h3>
@@ -109,22 +84,253 @@
               </table>
             </div>
           </div>
+          <div class="row mt-2">
+            <div class="col-md-11">
+              <h3>Notices:</h3>
+            </div>
+            <div class="col-md-1">
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary notice-add-button"
+                  id="addNotice"
+                  data-toggle="modal"
+                  data-target="#addNoticeModal"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container notice-container" id="notice-container">
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Notice</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="notice-listing" id="notice-listing"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-11">
+              <h3>Canteen:</h3>
+            </div>
+            <div class="col-md-1">
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary canteen-add-button"
+                  id="addCanteen"
+                  data-toggle="modal"
+                  data-target="#addCanteenModal"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container canteen-container" id="canteen-container">
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Canteen Item</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="canteen-listing" id="canteen-listing"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-11">
+              <h3>Activities:</h3>
+            </div>
+            <div class="col-md-1">
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary activity-add-button"
+                  id="addActivity"
+                  data-toggle="modal"
+                  data-target="#addActivityModal"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container activities-container" id="activities-container">
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="activities-listing"
+                  id="activities-listing"
+                ></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <!-- Notices Admin -->
-      <div
-        class="modal fade"
-        id="addNoticeModal"
-        tabindex="-1"
-        role="dialog"
-      >
+
+      <!-- Activities Admin -->
+      <div class="modal fade" id="addActivityModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">
-                Add Notice
-              </h4>
+              <h4 class="modal-title" id="modalTitle">Add Activity</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="addActivityForm">
+                  <div class="form-group">
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="activityName">Enter Activity:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="text"
+                          id="activityName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="activityLocation">Enter Location:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="text"
+                          id="activityLocation"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="activityDate">Enter Date:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="date"
+                          id="activityDate"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="activityTime">Enter Time:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="time"
+                          id="activityTime"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmActivity"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canteen Admin -->
+      <div class="modal fade" id="addCanteenModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">Add Canteen Item</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="addCanteenForm">
+                  <div class="form-group">
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="canteenItemName">Enter Item Name:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="text"
+                          id="canteenItemName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="canteenItemPrice">Enter Price:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="number"
+                          id="canteenItemPrice"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmCanteen"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notice Admin -->
+      <div class="modal fade" id="addNoticeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">Add Notice</h4>
             </div>
             <div class="modal-body">
               <div class="container">
@@ -135,9 +341,12 @@
                         <label for="noticeText">Enter Notice:</label>
                       </div>
                       <div class="col-md-6">
-                        <textarea id="noticeText" class="form-control" rows="2"></textarea>
+                        <textarea
+                          id="noticeText"
+                          class="form-control"
+                          rows="2"
+                        ></textarea>
                       </div>
-                    </div>
                     </div>
                   </div>
                   <button
@@ -159,6 +368,7 @@
             </div>
           </div>
         </div>
+      </div>
 
       <!-- Custom Year Group Modal -->
       <div
@@ -170,9 +380,7 @@
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">
-                Add Year Group
-              </h4>
+              <h4 class="modal-title" id="modalTitle">Add Year Group</h4>
             </div>
             <div class="modal-body">
               <div class="container">
@@ -180,47 +388,45 @@
                   <div class="form-group">
                     <div class="row cq-row">
                       <div class="col-md-6">
-                        <label for="yearGroupName">Enter Year Group Name:</label>
+                        <label for="yearGroupName"
+                          >Enter Year Group Name:</label
+                        >
                       </div>
                       <div class="col-md-6">
-                        <input type="text" id="yearGroupName" class="form-control" />
+                        <input
+                          type="text"
+                          id="yearGroupName"
+                          class="form-control"
+                        />
                       </div>
                     </div>
-                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-sm"
+                      id="confirmYearGroup"
+                    >
+                      Add
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-sm"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
                   </div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-sm"
-                    id="confirmYearGroup"
-                  >
-                    Add
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
                 </form>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Timetable Modal -->
-        <div
-        class="modal fade"
-        id="timetableModal"
-        tabindex="-1"
-        role="dialog"
-      >
+      </div>
+      <!-- Timetable Modal -->
+      <div class="modal fade" id="timetableModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">
-                Manage Timetable
-              </h4>
+              <h4 class="modal-title" id="modalTitle">Manage Timetable</h4>
             </div>
             <div class="modal-body">
               <div class="container">

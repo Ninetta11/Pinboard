@@ -55,7 +55,6 @@ function displayWeather() {
             weatherMessage = "Be careful out there today!"
         }
     });
-
 };
 
 // retrieves data from content API
