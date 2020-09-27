@@ -172,6 +172,7 @@
                   <tr>
                     <th scope="col">Activity</th>
                     <th scope="col">Location</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Time</th>
                     <th scope="col">Action</th>
                   </tr>
@@ -223,11 +224,23 @@
                     </div>
                     <div class="row cq-row">
                       <div class="col-md-6">
+                        <label for="activityDate">Enter Date:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="date"
+                          id="activityDate"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
                         <label for="activityTime">Enter Time:</label>
                       </div>
                       <div class="col-md-6">
                         <input
-                          type="text"
+                          type="time"
                           id="activityTime"
                           class="form-control"
                         />
@@ -284,7 +297,7 @@
                       </div>
                       <div class="col-md-6">
                         <input
-                          type="text"
+                          type="number"
                           id="canteenItemPrice"
                           class="form-control"
                         />

@@ -24,6 +24,7 @@ const canteenListingEl = document.querySelector(".canteen-listing");
 const confirmCanteenEl = document.getElementById("confirmCanteen");
 const activityNameEl = document.getElementById("activityName");
 const activityLocationEl = document.getElementById("activityLocation");
+const activityDateEl = document.getElementById("activityDate");
 const activityTimeEl = document.getElementById("activityTime");
 const activityListingEl = document.querySelector(".activities-listing");
 const confirmActivityEl = document.getElementById("confirmActivity");
@@ -53,6 +54,7 @@ const clearActivities = () => {
   activityListingEl.innerHTML = "";
   activityNameEl.value = "";
   activityLocationEl.value = "";
+  activityDateEl.value = "";
   activityTimeEl.value = "";
 };
 
@@ -137,6 +139,7 @@ const addHandler = (type) => {
       body = {
         name: activityNameEl.value,
         location: activityLocationEl.value,
+        date: activityDateEl.value,
         time: activityTimeEl.value,
       };
       break;
@@ -295,6 +298,9 @@ const createActivityRow = (item) => {
   const activityItemLocationEl = document.createElement("td");
   activityItemLocationEl.setAttribute("scope", "row");
   activityItemLocationEl.textContent = item.location;
+  const activityItemDateEl = document.createElement("td");
+  activityItemDateEl.setAttribute("scope", "row");
+  activityItemDateEl.textContent = item.date;
   const activityItemTimeEl = document.createElement("td");
   activityItemTimeEl.setAttribute("scope", "row");
   activityItemTimeEl.textContent = item.time;
@@ -310,6 +316,7 @@ const createActivityRow = (item) => {
   activityItemConfigEl.appendChild(activityItemDeleteEl);
   activityItemRowEl.appendChild(activityItemNameEl);
   activityItemRowEl.appendChild(activityItemLocationEl);
+  activityItemRowEl.appendChild(activityItemDateEl);
   activityItemRowEl.appendChild(activityItemTimeEl);
   activityItemRowEl.appendChild(activityItemConfigEl);
   activityListingEl.appendChild(activityItemRowEl);
