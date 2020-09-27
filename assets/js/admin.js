@@ -2,6 +2,7 @@
 let yearGroups = [];
 let notices = [];
 let canteenItems = [];
+let activities = [];
 const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
@@ -21,6 +22,11 @@ const canteenItemNameEl = document.getElementById("canteenItemName");
 const canteenItemPriceEl = document.getElementById("canteenItemPrice");
 const canteenListingEl = document.querySelector(".canteen-listing");
 const confirmCanteenEl = document.getElementById("confirmCanteen");
+const activityNameEl = document.getElementById("activityName");
+const activityLocationEl = document.getElementById("activityLocation");
+const activityTimeEl = document.getElementById("activityTime");
+const activityListingEl = document.querySelector(".activities-listing");
+const confirmActivityEl = document.getElementById("confirmActivity");
 
 // Functions
 const clearYearGroupResults = () => {
@@ -40,6 +46,14 @@ const clearCanteenItems = () => {
   canteenListingEl.innerHTML = "";
   canteenItemNameEl.value = "";
   canteenItemPriceEl.value = "";
+};
+
+const clearActivities = () => {
+  activities = [];
+  activityListingEl.innerHTML = "";
+  activityNameEl.value = "";
+  activityLocationEl.value = "";
+  activityTimeEl.value = "";
 };
 
 const clearAlert = () => {
@@ -80,9 +94,11 @@ const refreshAdmin = () => {
   clearYearGroupResults();
   clearNotices();
   clearCanteenItems();
+  clearActivities();
   fetchData("NOTICE");
   fetchData("YEAR_GROUP");
   fetchData("CANTEEN");
+  fetchData("ACTIVITIES");
 };
 
 const getCollection = (type) => {
@@ -92,6 +108,9 @@ const getCollection = (type) => {
       break;
     case "CANTEEN":
       return "canteenItems";
+      break;
+    case "ACTIVITIES":
+      return "activities";
       break;
     case "YEAR_GROUP":
       return "classes";
@@ -112,6 +131,13 @@ const addHandler = (type) => {
       body = {
         name: canteenItemNameEl.value,
         price: canteenItemPriceEl.value,
+      };
+      break;
+    case "ACTIVITIES":
+      body = {
+        name: activityNameEl.value,
+        location: activityLocationEl.value,
+        time: activityTimeEl.value,
       };
       break;
     case "YEAR_GROUP":
@@ -162,6 +188,12 @@ const fetchData = (type) => {
             break;
           case "CANTEEN":
             canteenItems.push({
+              ...data[key],
+              id: key,
+            });
+            break;
+          case "ACTIVITIES":
+            activities.push({
               ...data[key],
               id: key,
             });
@@ -254,6 +286,35 @@ const createCanteenRow = (item) => {
   canteenListingEl.appendChild(canteenRowEl);
 };
 
+// Output activities
+const createActivityRow = (item) => {
+  const activityItemRowEl = document.createElement("tr");
+  const activityItemNameEl = document.createElement("td");
+  activityItemNameEl.setAttribute("scope", "row");
+  activityItemNameEl.textContent = item.name;
+  const activityItemLocationEl = document.createElement("td");
+  activityItemLocationEl.setAttribute("scope", "row");
+  activityItemLocationEl.textContent = item.location;
+  const activityItemTimeEl = document.createElement("td");
+  activityItemTimeEl.setAttribute("scope", "row");
+  activityItemTimeEl.textContent = item.time;
+  const activityItemConfigEl = document.createElement("td");
+  activityItemConfigEl.setAttribute("scope", "row");
+
+  const activityItemDeleteEl = document.createElement("button");
+  activityItemDeleteEl.setAttribute("class", "btn btn-sm btn-danger action");
+  activityItemDeleteEl.setAttribute("id", "delete-button");
+  activityItemDeleteEl.setAttribute("data-value", item.id);
+  activityItemDeleteEl.textContent = "Delete";
+
+  activityItemConfigEl.appendChild(activityItemDeleteEl);
+  activityItemRowEl.appendChild(activityItemNameEl);
+  activityItemRowEl.appendChild(activityItemLocationEl);
+  activityItemRowEl.appendChild(activityItemTimeEl);
+  activityItemRowEl.appendChild(activityItemConfigEl);
+  activityListingEl.appendChild(activityItemRowEl);
+};
+
 // Render data
 const renderData = (type) => {
   switch (type) {
@@ -265,6 +326,11 @@ const renderData = (type) => {
     case "CANTEEN":
       canteenItems.forEach((item) => {
         createCanteenRow(item);
+      });
+      break;
+    case "ACTIVITIES":
+      activities.forEach((item) => {
+        createActivityRow(item);
       });
       break;
     case "YEAR_GROUP":
@@ -364,6 +430,11 @@ confirmCanteenEl.addEventListener("click", (event) => {
   addHandler("CANTEEN");
 });
 
+confirmActivityEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  addHandler("ACTIVITIES");
+});
+
 noticeListingEl.addEventListener("click", (event) => {
   if (event.target.id === "delete-button") {
     deleteHandler(event.target.getAttribute("data-value"), "NOTICE");
@@ -373,6 +444,12 @@ noticeListingEl.addEventListener("click", (event) => {
 canteenListingEl.addEventListener("click", (event) => {
   if (event.target.id === "delete-button") {
     deleteHandler(event.target.getAttribute("data-value"), "CANTEEN");
+  }
+});
+
+activityListingEl.addEventListener("click", (event) => {
+  if (event.target.id === "delete-button") {
+    deleteHandler(event.target.getAttribute("data-value"), "ACTIVITIES");
   }
 });
 
@@ -395,5 +472,6 @@ alertContainerEl.addEventListener("click", () => {
 fetchData("YEAR_GROUP");
 fetchData("NOTICE");
 fetchData("CANTEEN");
+fetchData("ACTIVITIES");
 
 // Testing
