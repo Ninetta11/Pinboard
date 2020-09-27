@@ -3,6 +3,7 @@ const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
 const dropDownMenuEl = document.querySelector(".dropdown-menu");
+
 const fetchYearGroups = () => {
   const queryUrl = apiUrlPrefix + "classes.json" + apiSuffix;
   fetch(queryUrl)
@@ -34,16 +35,44 @@ const renderYearGroups = (yearGroups) => {
 };
 fetchYearGroups();
 
+// key defaultYearGroup
+var defaultYearGroup = [];
+// var defaultYearGroup = yearGroup.name, yearGroup.id
+
+// function collectIDs() {ls
+//   for (var i = 0; i < yearGroup.length; i++) {
+//     var yearGroup = yearGroup[i];
+
+//     var li = document.createElement("li");
+//     li.setAttribute("data-index", i);
+//   }
+// }
 // store data-value in local storage
 function storeDataValue() {
   localStorage.setItem("defaultYearGroup", JSON.stringify(yearGroups));
 }
 
 var storedData = JSON.parse(localStorage.getItem)("yearGroup");
-console.log(storedData);
 
-// key defaultYearGroup
+if (storedData !== null) {
+  defaultYearGroup = storedData;
+}
 
 // Dropdown menu takes you to the relevant page when you click
+// dropDownMenuEl.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   yearGroup.push(defaultYearGroup);
 
+//   var element = event.target;
+//   if (element.matches("button") === true) storeDataValue();
+// });
+
+// everytime you click, it should update
+
+// function generate URL
 // Query Parameters
+// var url = new URL()
+// url.hash = ' ';
+// URL.createObjectURL();
+// URL.revokeObjectURL ();
+// URLSearchParams.append (): appends a specified key/value pair as a new search parameter

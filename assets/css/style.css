@@ -44,37 +44,51 @@ a {
   font-family: "Roboto", sans-serif;
 }
 
-.copyright {
-  text-align: center;
-}
-
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 header {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
-body  {
-    display: flex;
-    flex-direction: column;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
-    flex-shrink: 0;
-    margin-top: 100px;
+  flex-shrink: 0;
+  margin-top: 100px;
 }
 
 .content {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .card {
-    margin-bottom: 30px;
-    min-height: 150px;
-    max-height: fit-content;
-    margin-left: 10px;
+  margin-bottom: 30px;
+  min-height: 150px;
+  max-height: fit-content;
+  margin-left: 10px;
 }
 
+#dropdownMenuButton {
+  background-color: white;
+  color: black;
+  text-align: left;
+  width: 400px;
+  margin: 20px;
+}
+.show {
+  width: 400px;
+}
+.address {
+  color: white;
+}
 
+#copyright-index {
+  color: white;
+  text-align: center;
+}
