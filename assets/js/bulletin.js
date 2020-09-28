@@ -9,7 +9,6 @@ var notice = document.getElementById("notices");
 var activities = document.getElementById("activities");
 var canteen = document.getElementById("canteen");
 var book = document.getElementById("book");
-var messages = document.getElementById("message-board");
 
 var conditions = "";
 var currentTemp = "";
@@ -29,7 +28,7 @@ function displayDate() {
 // retrieves selected class from URL 
 function getClass() {
     var url = document.URL;
-    selectedClass = url.replace('bulletin.html?yg=', '');
+    selectedClass = new URLSearchParams(url);
     getSchoolData();
 }
 
@@ -125,13 +124,13 @@ function displayWelcome(group) {
 // displays selected classes schedule
 function displayTimetable(classData) {
     for (var i = 0; i < classData.timetable.length; i++) {
-        var newNotice = classData.timetable[i];
+
         var list = document.createElement("tr");
         var classTime = document.createElement("td");
         var newClass = document.createElement("th");
 
         classTime.innerHTML = '<i class="' + "fas fa-bell timetable" + '" style="color:blue"></i> ' + classtimes[i];
-        newClass.textContent = newNotice;
+        newClass.textContent = classData.timetable[i];
 
         list.append(classTime, newClass)
         timetable.append(list);
@@ -170,7 +169,6 @@ function displayActivities(schoolData) {
         var newNoticeSecond = document.createElement("tr");
         var blank = document.createElement("td");
         var newLine = document.createElement("br");
-
         var heading = document.createElement("th");
         heading.innerHTML = '<i class="' + "fas fa-star" + '" style="color:green"></i> ' + formattedDate;
         var event = document.createElement("th");
@@ -194,7 +192,7 @@ function displayCanteenMenu(schoolData) {
         var itemPrice = document.createElement("td");
 
         menuItem.textContent = items[i].name;
-        itemPrice.textContent = items[i].price;
+        itemPrice.textContent = "$" + items[i].price;
 
         item.append(menuItem, itemPrice)
         canteen.prepend(item);
