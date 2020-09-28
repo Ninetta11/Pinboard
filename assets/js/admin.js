@@ -3,6 +3,7 @@ let yearGroups = [];
 let notices = [];
 let canteenItems = [];
 let activities = [];
+let loading = false;
 const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
@@ -15,6 +16,7 @@ const noticeTextEl = document.getElementById("noticeText");
 const confirmNoticeEl = document.getElementById("confirmNotice");
 const noticeListingEl = document.querySelector(".notice-listing");
 const alertContainerEl = document.querySelector(".alert-container");
+const spinnerContainerEl = document.querySelector(".spinner-container");
 const modalEl = document.querySelectorAll(".modal");
 
 const bookNameEl = document.getElementById("bookName");
@@ -66,6 +68,10 @@ const clearActivities = () => {
 
 const clearAlert = () => {
   alertContainerEl.innerHTML = "";
+};
+
+const clearSpinner = () => {
+  spinnerContainerEl.innerHTML = "";
 };
 
 const closeModal = () => {
@@ -144,6 +150,7 @@ const getCollection = (type) => {
 };
 
 const addHandler = (type) => {
+  showSpinner();
   const collection = getCollection(type);
   let body = "";
   switch (type) {
@@ -182,11 +189,13 @@ const addHandler = (type) => {
     alertHandler(res.statusText, "SUCCESS");
     closeModal();
     refreshAdmin();
+    clearSpinner();
   });
 };
 
 // Delete handler
 const deleteHandler = (id, type) => {
+  showSpinner();
   const collection = getCollection(type);
 
   const queryUrl = apiUrlPrefix + `${collection}/${id}.json` + apiSuffix;
@@ -195,11 +204,16 @@ const deleteHandler = (id, type) => {
   }).then((res) => {
     alertHandler(res.statusText, "SUCCESS");
     refreshAdmin();
+    clearSpinner();
   });
 };
 
 // Fetch data
 const fetchData = (type) => {
+  if (!loading) {
+    loading = true;
+    showSpinner();
+  }
   const collection = getCollection(type);
   const queryUrl = apiUrlPrefix + `${collection}.json` + apiSuffix;
   fetch(queryUrl)
@@ -234,6 +248,8 @@ const fetchData = (type) => {
         }
       }
       renderData(type);
+      loading = false;
+      clearSpinner();
     });
 };
 
@@ -417,6 +433,7 @@ const manageBookHandler = (id) => {
 };
 
 const saveBookHandler = (id) => {
+  showSpinner();
   const updatedBook = {
     book: {
       name: bookNameEl.value,
@@ -432,6 +449,7 @@ const saveBookHandler = (id) => {
     alertHandler(res.statusText, "SUCCESS");
     closeModal();
     refreshAdmin();
+    clearSpinner();
   });
 };
 
@@ -469,6 +487,7 @@ const manageTimetableHandler = (id) => {
 };
 
 const saveTimetableHandler = (id) => {
+  showSpinner();
   const updatedTimetable = {
     timetable: [],
   };
@@ -487,7 +506,16 @@ const saveTimetableHandler = (id) => {
     alertHandler(res.statusText, "SUCCESS");
     closeModal();
     refreshAdmin();
+    clearSpinner();
   });
+};
+
+const showSpinner = () => {
+  loading = true;
+  const spinnerEl = document.createElement("div");
+  spinnerEl.classList.add("spinner-border", "text-secondary");
+  spinnerEl.setAttribute("role", "status");
+  spinnerContainerEl.appendChild(spinnerEl);
 };
 
 // Event listeners
