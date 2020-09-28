@@ -17,13 +17,20 @@ var weatherMessage = "";
 
 var schoolName = "";
 var city = "sydney";
-var selectedClass = "Year 9";
+var selectedClass = "";
 var classtimes = ["9:00am", "9:45am", "10:30am", "11:15am", "12:30pm", "1:15pm", "2:00pm", "2:45pm"];
 
 
 // display current date
 function displayDate() {
     date.textContent = moment().format(' dddd, Do MMMM');
+}
+
+// retrieves selected class from URL 
+function getClass() {
+    var url = document.URL;
+    selectedClass = url.replace('bulletin.html?yg=', '');
+    getSchoolData();
 }
 
 // display weather details based on current day
@@ -55,7 +62,7 @@ function displayWeather() {
             weatherMessage = "Be careful out there today!"
         }
     });
-};
+}
 
 // retrieves data from content API
 function getSchoolData() {
@@ -75,12 +82,11 @@ function getSchoolData() {
 
 // retrieves specific class information based on selection 
 function getClassInfo(schoolData) {
-    var items = Object.values(schoolData.classes);
-    for (var i = 0; i < items.length; i++) {
-        var group = items[i].name;
-        if (group === selectedClass) {
-            var classData = items[i];
-            displayWelcome(group);
+    var items = schoolData.classes;
+    for (var key in items) {
+        if (key === selectedClass) {
+            var classData = schoolData.classes[key];
+            displayWelcome(classData.name);
             displayTimetable(classData);
             displayBook(classData);
         }
@@ -107,7 +113,7 @@ function displayWelcome(group) {
 
     // displays welcome message
     var welcomeMessage = document.createElement("h3");
-    var weatherAlert = document.createElement("h3");
+    var weatherAlert = document.createElement("h4");
     var scheduleHeading = document.createElement("h5");
     scheduleHeading.textContent = "Today's Timetable";
     var newLine = document.createElement("hr");
@@ -228,6 +234,6 @@ function displayBook(classData) {
 
 displayDate();
 displayWeather();
-getSchoolData();
+getClass();
 
 
