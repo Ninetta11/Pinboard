@@ -3,7 +3,6 @@ const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
 const dropDownMenuEl = document.querySelector(".dropdown-menu");
-var href = "bulletin.html?yg=" + "yearGroup.id";
 
 const fetchYearGroups = () => {
   const queryUrl = apiUrlPrefix + "classes.json" + apiSuffix;
@@ -25,6 +24,7 @@ const createYearGroupDropDownItem = (yearGroup, index) => {
   dropdownItemEl.setAttribute("class", "dropdown-item");
   dropdownItemEl.setAttribute("data-value", yearGroup.id);
   console.log(yearGroup.id);
+  var href = "bulletin.html?yg=" + yearGroup.id;
   dropdownItemEl.setAttribute("href", href);
   dropdownItemEl.textContent = yearGroup.name;
   dropDownMenuEl.appendChild(dropdownItemEl);
