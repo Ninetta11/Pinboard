@@ -29,6 +29,14 @@ a {
   color: white;
 }
 
+.address {
+  color: white;
+}
+
+.admin-container {
+  animation: slideUp 1.5s forwards;
+}
+
 .admin-main {
   padding-top: 50px;
   text-align: center;
@@ -45,17 +53,19 @@ a {
   }
 }
 
-.admin-container {
-  animation: slideUp 1.5s forwards;
-}
-
-.pb-title {
-  padding-bottom: 10px;
-  text-shadow: none;
-}
-
-.btn-row {
+.btn-row, .cq-row {
   padding: 10px;
+}
+
+.card {
+  margin-bottom: 30px;
+  min-height: 150px;
+  max-height: fit-content;
+  margin-left: 10px;
+}
+
+.choose {
+  text-shadow: black 1px 0 10px;
 }
 
 .config-container {
@@ -63,8 +73,20 @@ a {
   padding: 15px;
 }
 
-.cq-row {
-  padding: 10px;
+.content {
+  flex: 1 0 auto;
+}
+
+.copyright {
+  text-align: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  line-height: 20px;
 }
 
 .form-group {
@@ -92,40 +114,6 @@ a {
   color: #fff;
 }
 
-.choose {
-  text-shadow: black 1px 0 10px;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  line-height: 20px;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-header {
-  margin-bottom: 100px;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-footer {
-  flex-shrink: 0;
-  margin-top: 100px;
-
-.copyright {
-  text-align: center;
-}
-
 .left-align {
   position: absolute;
   left: 5%;
@@ -136,31 +124,21 @@ footer {
   right: 5%;
 }
 
-.content {
-  flex: 1 0 auto;
+.pb-title {
+  padding-bottom: 10px;
+  text-shadow: none;
 }
 
-.card {
-  margin-bottom: 30px;
-  min-height: 150px;
-  max-height: fit-content;
-  margin-left: 10px;
+.show {
+  width: 400px;
 }
-
+  
 #dropdownMenuButton {
   background-color: white;
   color: black;
   text-align: left;
   width: 400px;
   margin: 20px;
-}
-  
-.show {
-  width: 400px;
-}
-  
-.address {
-  color: white;
 }
 
 #copyright-index {
