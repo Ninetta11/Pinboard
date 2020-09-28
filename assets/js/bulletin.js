@@ -9,7 +9,6 @@ var notice = document.getElementById("notices");
 var activities = document.getElementById("activities");
 var canteen = document.getElementById("canteen");
 var book = document.getElementById("book");
-var messages = document.getElementById("message-board");
 
 var conditions = "";
 var currentTemp = "";
@@ -29,7 +28,7 @@ function displayDate() {
 // retrieves selected class from URL 
 function getClass() {
     var url = document.URL;
-    selectedClass = url.replace('bulletin.html?yg=', '');
+    selectedClass = new URLSearchParams(url);
     getSchoolData();
 }
 
