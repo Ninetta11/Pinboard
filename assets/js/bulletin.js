@@ -83,7 +83,6 @@ function getClassInfo(schoolData) {
             displayWelcome(group);
             displayTimetable(classData);
             displayBook(classData);
-            //displayMessageBoard(classData);
         }
     }
 }
@@ -106,12 +105,11 @@ function displayWelcome(group) {
         greeting = "Good afternoon";
     };
 
-    var newNotice = greeting + " " + group + " \n " + weatherMessage;
     var list = document.createElement("h4");
     var scheduleHeading = document.createElement("h5");
     scheduleHeading.textContent = "Today's Timetable";
     var newLine = document.createElement("br");
-    list.textContent = newNotice;
+    list.innerHTML = greeting + " " + group + "<span></span>" + weatherMessage;;
     welcome.append(list, newLine, scheduleHeading);
 }
 
@@ -120,7 +118,7 @@ function displayTimetable(classData) {
     for (var i = 0; i < classData.timetable.length; i++) {
         var newNotice = classData.timetable[i];
         var list = document.createElement("p");
-        list.textContent = classtimes[i] + " " + newNotice;
+        list.innerHTML = '<i class="' + "fas fa-bell timetable" + '" style="color:blue"></i> ' + classtimes[i] + "<span></span>" + newNotice;
         timetable.append(list);
     }
 }
@@ -130,8 +128,8 @@ function displayNotices(schoolData) {
     var items = Object.values(schoolData.notices);
     for (var i = 0; i < items.length; i++) {
         var newNotice = items[i].noticeContent;
-        var list = document.createElement("p");
-        list.textContent = newNotice;
+        var list = document.createElement("h5");
+        list.innerHTML = '<i class="' + "fas fa-exclamation-triangle" + '" style="color:red"></i> ' + newNotice;
         notice.prepend(list);
     }
 }
@@ -155,10 +153,10 @@ function displayActivities(schoolData) {
         var time = originalTime.format("LT");
 
         // adds actvity to activities display board
-        var newNotice = date + " \t " + items[i].name;
+        var newNotice = date + "<span></span>" + items[i].name;
         var details = time + " @ " + items[i].location;
-        heading.textContent = newNotice;
-        subheading.textContent = details;
+        heading.innerHTML = '<i class="' + "fas fa-star" + '" style="color:green"></i> ' + newNotice;
+        subheading.innerHTML = "<span></span>" + details;
         activities.prepend(heading, subheading, newLine);
     }
 }
@@ -206,17 +204,6 @@ function displayBook(classData) {
         }
     })
 };
-
-function displayMessageBoard(classData) {
-    var items = Object.values(classData.messages);
-    for (var i = 0; i < items.length; i++) {
-        var newNotice = Object.values(items[i].messages);
-        var list = document.createElement("p");
-        list.textContent = newNotice;
-        messages.prepend(list);
-    }
-};
-
 
 displayDate();
 displayWeather();
