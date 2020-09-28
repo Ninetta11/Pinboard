@@ -17,12 +17,12 @@ var weatherMessage = "";
 var schoolName = "";
 var city = "sydney";
 var selectedClass = "";
-var classtimes = ["9:00am", "9:45am", "10:30am", "11:15am", "12:30pm", "1:15pm", "2:00pm", "2:45pm"];
+var classtimes = ["9:00am", "9:45am", "10:30am", "10:50am", "11:30pm", "12:15pm", "1:00pm", "1:45pm", "2:30pm"];
 
 
 // display current date
 function displayDate() {
-    date.textContent = moment().format(' dddd, Do MMMM');
+    date.textContent = moment().format('dddd, Do MMMM');
 }
 
 // retrieves selected class from URL 
@@ -129,7 +129,7 @@ function displayTimetable(classData) {
         var classTime = document.createElement("td");
         var newClass = document.createElement("th");
 
-        classTime.innerHTML = '<i class="' + "fas fa-bell timetable" + '" style="color:blue"></i> ' + classtimes[i];
+        classTime.innerHTML = '<i class="' + "far fa-bell timetable" + '" style="color:blue"></i> ' + classtimes[i];
         newClass.textContent = classData.timetable[i];
 
         list.append(classTime, newClass)
@@ -143,7 +143,7 @@ function displayNotices(schoolData) {
     for (var i = 0; i < items.length; i++) {
         var newNotice = items[i].noticeContent;
         var list = document.createElement("h5");
-        list.innerHTML = '<i class="' + "fas fa-exclamation-triangle" + '" style="color:red"></i> ' + newNotice;
+        list.innerHTML = '<i class="' + "fas fa-exclamation" + '" style="color:red"></i> ' + newNotice;
         var newLine = document.createElement("br");
         notice.prepend(list, newLine);
     }
@@ -157,7 +157,7 @@ function displayActivities(schoolData) {
         // changing date format for display
         var dateEntered = items[i].date;
         var originaldate = moment(dateEntered, "YYYY-MM-D");
-        var formattedDate = originaldate.format("Do MMM");
+        var formattedDate = originaldate.format("DD/MM");
 
         // changing time format for display
         var timeEntered = items[i].time;
@@ -170,7 +170,7 @@ function displayActivities(schoolData) {
         var blank = document.createElement("td");
         var newLine = document.createElement("br");
         var heading = document.createElement("th");
-        heading.innerHTML = '<i class="' + "fas fa-star" + '" style="color:green"></i> ' + formattedDate;
+        heading.innerHTML = '<i class="' + "far fa-star" + '" style="color:green"></i> ' + formattedDate;
         var event = document.createElement("th");
         event.textContent = items[i].name;
         var subheading = document.createElement("td");
