@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.html">Home</a>
-                    <a class="nav-link active" href="bulletin.html">Bulletin - <span id="Year-Group"></span><span
+                    <a class="nav-link active" href="bulletin.html">Bulletin - <span id="year-group"></span><span
                             class="sr-only">(current)</span></a>
                     <a class="nav-link" href="admin.html">Admin Login</a>
                 </div>
@@ -35,7 +35,7 @@
         <div class="row">
 
             <aside class="col-md-4">
-                <article id="schedule" class="card border-primary">
+                <article class="card border-primary">
                     <div class="card-header text-white text-center bg-primary">
                         <h1 id="date"></h1>
                         <div id="weather">
@@ -45,65 +45,73 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="timetable">
-                            <ul>
-
-                            </ul>
-                        </div>
-                        <div id="notes">
-
-                        </div>
+                        <div id="welcome"></div>
+                        <div id="timetable"></div>
+                        <div id="notes"></div>
                     </div>
                 </article>
             </aside>
 
             <div class="col-md-8">
-                <article id="notices" class="row card border-danger">
-                    <h3 class="text-center card-header text-white bg-danger"><i class="fas fa-thumbtack"></i> Important
-                        Notices <i class="fas fa-thumbtack"></i></h3>
-                    <div class="card-body">
-
-                    </div>
+                <article class="row card border-danger">
+                    <h3 class="text-center card-header text-white bg-danger"><i class="fas fa-thumbtack left-align"></i>
+                        Important Notices <i class="fas fa-thumbtack right-align"></i></h3>
+                    <div id="notices" class="card-body"></div>
                 </article>
 
-                <article id="curricula" class="row card border-secondary">
-                    <h3 class="card-header text-white text-center bg-secondary"><i class="fas fa-thumbtack"></i> Extra
-                        Curricula Activities <i class="fas fa-thumbtack"></i></h3>
-                    <div class="card-body">
-
-                    </div>
+                <article class="row card border-secondary">
+                    <h3 class="card-header text-white text-center bg-secondary"><i
+                            class="fas fa-thumbtack left-align"></i> Extra
+                        Curricula Activities <i class="fas fa-thumbtack right-align"></i></h3>
+                    <div id="activities" class="card-body"></div>
                 </article>
 
                 <div class="row">
                     <div class="col-md-7">
 
-                        <article id="canteen" class="row card border-secondary">
+                        <article class="row card border-secondary">
                             <h3 class="card-header text-white text-center bg-secondary"> <i
-                                    class="fas fa-thumbtack"></i> Canteen Menu <i class="fas fa-thumbtack"></i></h3>
-                            <div class="card-body">
-
-                            </div>
+                                    class="fas fa-thumbtack left-align"></i> Canteen Menu <i
+                                    class="fas fa-thumbtack right-align"></i></h3>
+                            <div id="canteen" class="card-body"></div>
                         </article>
 
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
 
-                        <article id="book" class="row card border-secondary">
-                            <h4 class="card-header text-white text-center bg-secondary"><i class="fas fa-thumbtack"></i>
-                                Recommended Reading <i class="fas fa-thumbtack"></i></h4>
-                            <div class="card-body">
-
-                            </div>
+                        <article class="row card border-secondary">
+                            <h3 class="card-header text-white text-center bg-secondary"><i
+                                    class="fas fa-thumbtack left-align"></i>
+                                Term Text <i class="fas fa-thumbtack right-align"></i></h3>
+                            <div id="book" class="card-body"></div>
                         </article>
                     </div>
                 </div>
 
-                <article id="message-board" class="row card border-info">
-                    <h3 class="card-header text-white text-center bg-info"><i class="fas fa-thumbtack"></i> Message
-                        Board <i class="fas fa-thumbtack"></i></h3>
-                    <div class="card-body">
-
+                <article class="row card border-info">
+                    <h3 class="card-header text-white text-center bg-info"><i class="fas fa-thumbtack left-align"></i>
+                        Message
+                        Board <i class="fas fa-thumbtack right-align"></i></h3>
+                    <div id="message-board" class="card-body"></div>
+                    <div class="mbinput-container container">
+                        <form>
+                            <div class="form-group row">
+                                <label for="message-input" class="col-md-12 col-form-label">Post Message:</label>
+                                <div class="col-md-12">
+                                    <textarea class="form-control" id="message-input" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-9">
+                                    <button type="submit" class="btn btn-primary" id="post-button" disabled>
+                                        Post
+                                    </button>
+                                </div>
+                                <div class="col-md-2">Character Count:</div>
+                                <div class="col-md-1" id="char-count"></div>
+                            </div>
+                        </form>
                     </div>
                 </article>
             </div>
@@ -112,9 +120,6 @@
 
     <footer class="navbar navbar-expand-lg position-sticky navbar-dark bg-dark">
     </footer>
-
-
-
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
