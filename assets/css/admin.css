@@ -1,0 +1,152 @@
+* {
+  font-family: "Roboto" sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+header {
+  margin-bottom: 100px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: 100px;
+}
+
+h1 {
+  text-shadow: black 1px 0 10px;
+}
+
+a {
+  color: white;
+}
+
+td {
+  padding: 0px 0px 0px 15px;
+}
+
+th {
+  padding: 10px 0px 0px 15px;
+}
+
+.address {
+  color: white;
+}
+
+.admin-container {
+  animation: slideUp 1.5s forwards;
+}
+
+.admin-main {
+  padding-top: 50px;
+  text-align: center;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    top: 100%;
+  }
+  to {
+    opacity: 1;
+    top: 0%;
+  }
+}
+
+.btn-row,
+.cq-row {
+  padding: 10px;
+}
+
+.card {
+  margin-bottom: 30px;
+  min-height: 150px;
+  max-height: fit-content;
+  margin-left: 10px;
+}
+
+.choose {
+  text-shadow: black 1px 0 10px;
+}
+
+.config-container {
+  text-align: initial;
+  padding: 15px;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.copyright {
+  text-align: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  line-height: 20px;
+}
+
+.form-group {
+  margin-top: 60px;
+}
+
+.hero-container {
+  position: relative;
+  padding: 0%;
+}
+
+.hero-container video {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+  z-index: 0;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 1;
+  top: 40%;
+  color: #fff;
+}
+
+.left-align {
+  position: absolute;
+  left: 5%;
+}
+
+.right-align {
+  position: absolute;
+  right: 5%;
+}
+
+.pb-title {
+  padding-bottom: 10px;
+  text-shadow: none;
+}
+
+#dropdownMenuButton {
+  background-color: white;
+  color: black;
+  text-align: left;
+  width: 400px;
+  margin: 20px;
+}
+
+#copyright-index {
+  color: white;
+  text-align: center;
+}

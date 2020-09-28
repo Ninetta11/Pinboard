@@ -231,8 +231,11 @@ const fetchData = (type) => {
 const createYearGroupRow = (yearGroup) => {
   const yearGroupRow = document.createElement("tr");
   const yearGroupName = document.createElement("td");
+  const yearGroupBook = document.createElement("td");
   yearGroupName.setAttribute("scope", "row");
   yearGroupName.textContent = yearGroup.name;
+  yearGroupBook.setAttribute("scope", "row");
+  yearGroupBook.textContent = yearGroup.book.name;
   const yearGroupConfig = document.createElement("td");
   yearGroupConfig.setAttribute("scope", "row");
 
@@ -262,6 +265,7 @@ const createYearGroupRow = (yearGroup) => {
   yearGroupConfig.appendChild(manageBook);
   yearGroupConfig.appendChild(yearGroupDelete);
   yearGroupRow.appendChild(yearGroupName);
+  yearGroupRow.appendChild(yearGroupBook);
   yearGroupRow.appendChild(yearGroupConfig);
   yearGroupListingEl.appendChild(yearGroupRow);
 };
