@@ -87,20 +87,30 @@ const clearBook = () => {
 const alertHandler = (message, status) => {
   const alertEl = document.createElement("div");
   alertEl.setAttribute("role", "alert");
+  alertEl.classList.add("alert", "alert-dismissable", "fade", "show");
 
   switch (status) {
     case "ERROR":
-      alertEl.setAttribute("class", "alert alert-danger");
+      alertEl.classList.add("alert-danger");
       alertEl.textContent = `An error occured with status: ${message}`;
       break;
     case "SUCCESS":
-      alertEl.setAttribute("class", "alert alert-success");
+      alertEl.classList.add("alert-success");
       alertEl.textContent = `Operation success with status: ${message}`;
       break;
     default:
-      alertEl.setAttribute("class", "alert alert-primary");
+      alertEl.classList.add("alert-primary");
       alertEl.textContent = message;
   }
+
+  const dismissAlertEl = document.createElement("button");
+  dismissAlertEl.type = "button";
+  dismissAlertEl.classList.add("close");
+  dismissAlertEl.setAttribute("data-dismiss", "alert");
+  const dismissButtonEl = document.createElement("span");
+  dismissButtonEl.innerHTML = "&times;";
+  dismissAlertEl.appendChild(dismissButtonEl);
+  alertEl.appendChild(dismissAlertEl);
 
   alertContainerEl.appendChild(alertEl);
 };
