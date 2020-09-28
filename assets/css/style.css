@@ -61,7 +61,8 @@ th {
   }
 }
 
-.btn-row, .cq-row {
+.btn-row,
+.cq-row {
   padding: 10px;
 }
 
@@ -137,15 +138,10 @@ th {
   text-shadow: none;
 }
 
-.show {
-  width: 400px;
-}
-  
 #dropdownMenuButton {
   background-color: white;
   color: black;
   text-align: left;
-  width: 400px;
   margin: 20px;
 }
 
@@ -153,4 +149,3 @@ th {
   color: white;
   text-align: center;
 }
-
