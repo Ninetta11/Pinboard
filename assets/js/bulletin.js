@@ -28,7 +28,7 @@ function displayDate() {
 // retrieves selected class from URL 
 function getClass() {
     var url = document.URL;
-    selectedClass = new URLSearchParams(url);
+    selectedClass = url.split('=')[1];
     getSchoolData();
 }
 
@@ -204,6 +204,8 @@ function displayBook(classData) {
     var searchTitle = classData.book.name;
     var searchPhrase = searchTitle.replace(/ /g, "-");
     var searchAuthor = classData.book.author;
+    console.log(searchPhrase);
+    console.log(searchAuthor);
     var queryURL = "http://openlibrary.org/search.json?title=" + searchPhrase;
     $.ajax({
         url: queryURL,
