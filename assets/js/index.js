@@ -3,6 +3,7 @@ const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
 const dropDownMenuEl = document.querySelector(".dropdown-menu");
+var href = "bulletin.html?yg=" + "yearGroup.id";
 
 const fetchYearGroups = () => {
   const queryUrl = apiUrlPrefix + "classes.json" + apiSuffix;
@@ -24,7 +25,7 @@ const createYearGroupDropDownItem = (yearGroup, index) => {
   dropdownItemEl.setAttribute("class", "dropdown-item");
   dropdownItemEl.setAttribute("data-value", yearGroup.id);
   console.log(yearGroup.id);
-  dropdownItemEl.setAttribute("href", "#");
+  dropdownItemEl.setAttribute("href", href);
   dropdownItemEl.textContent = yearGroup.name;
   dropDownMenuEl.appendChild(dropdownItemEl);
 };
@@ -57,22 +58,3 @@ var storedData = JSON.parse(localStorage.getItem)("yearGroup");
 if (storedData !== null) {
   defaultYearGroup = storedData;
 }
-
-// Dropdown menu takes you to the relevant page when you click
-// dropDownMenuEl.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   yearGroup.push(defaultYearGroup);
-
-//   var element = event.target;
-//   if (element.matches("button") === true) storeDataValue();
-// });
-
-// everytime you click, it should update
-
-// function generate URL
-// Query Parameters
-// var url = new URL()
-// url.hash = ' ';
-// URL.createObjectURL();
-// URL.revokeObjectURL ();
-// URLSearchParams.append (): appends a specified key/value pair as a new search parameter
