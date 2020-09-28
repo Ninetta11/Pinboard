@@ -16,7 +16,7 @@ var weatherMessage = "";
 
 var schoolName = "";
 var city = "sydney";
-var selectedClass = "-MIEFuarnORrl7IlMd5O";
+var selectedClass = "";
 var classtimes = ["9:00am", "9:45am", "10:30am", "11:15am", "12:30pm", "1:15pm", "2:00pm", "2:45pm"];
 
 
