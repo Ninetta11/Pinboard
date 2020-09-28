@@ -1,108 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pinboard</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinboard</title>
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
-    <!-- CSS file and reset-->
-    <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet" />
 
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <!-- CSS file and reset-->
+  <link rel="stylesheet" href="assets/css/style.css" />
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
 
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
 
-  <body>
-    <main>
-      <div class="container-fluid hero-container">
-        <video id="home-hero-video" autoplay muted loop>
-          <source type="video/mp4" src="assets/video/stockfoot_004.mp4" />
-        </video>
-        <div class="hero-content container-fluid text-center">
-          <div class="container">
-            <h1 class="text-center">Welcome to Degrassi High Pinboard</h1>
-            <div class="row">
-              <div class="col-md-3"></div>
-              <div class="col-md-6 text-center">
-                <div class="dropdown">
-                  <button
-                    class="btn btn-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Select Year Group
-                  </button>
-                  <div
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
-                  ></div>
-                </div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <main>
+    <div class="container-fluid hero-container">
+      <video id="home-hero-video" autoplay muted loop>
+        <source type="video/mp4" src="assets/video/stockfoot_004.mp4" />
+      </video>
+      <div class="hero-content container-fluid text-center">
+        <div class="container">
+          <h1 class="text-center">Welcome to Degrassi High Pinboard</h1>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select Year Group
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"></div>
               </div>
-              <div class="col-md-3"></div>
             </div>
+            <div class="col-md-3"></div>
           </div>
         </div>
       </div>
-    </main>
-    <footer class="footer">
-      <div class="row"></div>
-      <div class="col-md-12 contact-details text-center">
-        <p class="address">
-          <span class="streetAddress">
-            <strong>xxx School Street, Hornsby Heights, Sydney, 2000</strong>
-          </span>
-          <span class="contact">
-            ~
-            <a target="_blank" href="https://goo.gl/maps/iFoZRXdSwdu9XX9m9">
-              <strong> Get Directions </strong>
-            </a>
-            ~ PH:
-            <a href="#">
-              <span>
-                <strong>+61 (2) 9328-XXXX </strong>
-              </span>
-            </a>
-          </span>
-        </p>
-        <p class="directions"></p>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="row"></div>
+    <div class="col-md-12 contact-details text-center">
+      <p class="address">
+        <span class="streetAddress">
+          <strong>xxx School Street, Hornsby Heights, Sydney, 2000</strong>
+        </span>
+        <span class="contact">
+          ~
+          <a target="_blank" href="https://goo.gl/maps/iFoZRXdSwdu9XX9m9">
+            <strong> Get Directions </strong>
+          </a>
+          ~ PH:
+          <a href="#">
+            <span>
+              <strong>+61 (2) 9328-XXXX </strong>
+            </span>
+          </a>
+        </span>
+      </p>
+      <p class="directions"></p>
+    </div>
+    <div class="row">
+      <div class="col-md-12" id="copyright-index">
+        <p>All Rights Reserved &#169; Degrassi High 2020.</p>
       </div>
-      <div class="row">
-        <div class="col-md-12" id="copyright-index">
-          <p>All Rights Reserved &#169; Degrassi High 2020.</p>
-        </div>
-      </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- App specific scripts-->
-    <script src="assets/js/index.js"></script>
-  </body>
+  <!-- App specific scripts-->
+  <script src="assets/js/index.js"></script>
+</body>
+
 </html>

@@ -90,6 +90,14 @@ th {
   text-align: center;
 }
 
+.fas  {
+  padding-right: 10px;
+}
+
+.far {
+  padding-right: 3px;
+}
+
 .footer {
   position: fixed;
   bottom: 0;

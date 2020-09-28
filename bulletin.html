@@ -50,6 +50,13 @@
                         <div id="notes"></div>
                     </div>
                 </article>
+
+                <article class="row card border-secondary">
+                    <h3 class="card-header text-white text-center bg-secondary"> <i
+                            class="fas fa-thumbtack left-align"></i> Canteen Menu <i
+                            class="fas fa-thumbtack right-align"></i></h3>
+                    <div id="canteen" class="card-body"></div>
+                </article>
             </aside>
 
             <div class="col-md-8">
@@ -59,21 +66,15 @@
                     <div id="notices" class="card-body"></div>
                 </article>
 
-                <article class="row card border-secondary">
-                    <h3 class="card-header text-white text-center bg-secondary"><i
-                            class="fas fa-thumbtack left-align"></i> Extra
-                        Curricula Activities <i class="fas fa-thumbtack right-align"></i></h3>
-                    <div id="activities" class="card-body"></div>
-                </article>
+
 
                 <div class="row">
                     <div class="col-md-7">
-
                         <article class="row card border-secondary">
-                            <h3 class="card-header text-white text-center bg-secondary"> <i
-                                    class="fas fa-thumbtack left-align"></i> Canteen Menu <i
+                            <h3 class="card-header text-white text-center bg-secondary"><i
+                                    class="fas fa-thumbtack left-align"></i> Activities <i
                                     class="fas fa-thumbtack right-align"></i></h3>
-                            <div id="canteen" class="card-body"></div>
+                            <div id="activities" class="card-body"></div>
                         </article>
 
                     </div>
@@ -93,27 +94,28 @@
                     <h3 class="card-header text-white text-center bg-info"><i class="fas fa-thumbtack left-align"></i>
                         Message
                         Board <i class="fas fa-thumbtack right-align"></i></h3>
-                    <div id="message-board" class="card-body"></div>
-                    <div class="mbinput-container container">
-                        <form>
-                            <div class="form-group row">
-                                <label for="message-input" class="col-md-12 col-form-label">Post Message:</label>
-                                <div class="col-md-12">
-                                    <textarea class="form-control" id="message-input" rows="3"></textarea>
+                    <div id="message-board" class="card-body">
+                        <div class="mbinput-container container">
+                            <form>
+                                <div class="row">
+                                    <label for="message-input" class="col-md-12 col-form-label">Post Message:</label>
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" id="message-input" rows="3"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-9">
-                                    <button type="submit" class="btn btn-primary" id="post-button" disabled>
-                                        Post
-                                    </button>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <button type="submit" class="btn btn-primary" id="post-button" disabled>
+                                            Post
+                                        </button>
+                                    </div>
+                                    <div class="col-md-2">Character Count:</div>
+                                    <div class="col-md-1" id="char-count"></div>
                                 </div>
-                                <div class="col-md-2">Character Count:</div>
-                                <div class="col-md-1" id="char-count"></div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+                        <div class="wall-container container"></div>
                     </div>
-                    <div class="wall-container container"></div>
                 </article>
             </div>
         </div>
