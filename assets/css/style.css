@@ -21,16 +21,20 @@ footer {
   margin-top: 100px;
 }
 
-span {
-  padding: 15px;
-}
-
 h1 {
   text-shadow: black 1px 0 10px;
 }
 
 a {
   color: white;
+}
+
+td {
+  padding: 0px 0px 0px 15px;
+}
+
+th {
+  padding: 10px 0px 0px 15px;
 }
 
 .address {
