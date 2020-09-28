@@ -17,7 +17,7 @@ var weatherMessage = "";
 
 var schoolName = "";
 var city = "sydney";
-var selectedClass = "Class 3M";
+var selectedClass = "Year 9";
 var classtimes = ["9:00am", "9:45am", "10:30am", "11:15am", "12:30pm", "1:15pm", "2:00pm", "2:45pm"];
 
 
@@ -68,8 +68,8 @@ function getSchoolData() {
     }).then(function (response) {
         getClassInfo(response);
         displayNotices(response);
-        //displayActivities(reponse);
-        //displayCanteenMenu(response);
+        displayActivities(response);
+        displayCanteenMenu(response);
     })
 }
 
@@ -82,7 +82,7 @@ function getClassInfo(schoolData) {
             var classData = items[i];
             displayWelcome(group);
             displayTimetable(classData);
-            //displayBook(classData);
+            displayBook(classData);
             //displayMessageBoard(classData);
         }
     }
@@ -108,8 +108,11 @@ function displayWelcome(group) {
 
     var newNotice = greeting + " " + group + " \n " + weatherMessage;
     var list = document.createElement("h4");
+    var scheduleHeading = document.createElement("h5");
+    scheduleHeading.textContent = "Today's Timetable";
+    var newLine = document.createElement("br");
     list.textContent = newNotice;
-    welcome.append(list);
+    welcome.append(list, newLine, scheduleHeading);
 }
 
 // displays selected classes schedule
@@ -137,10 +140,26 @@ function displayNotices(schoolData) {
 function displayActivities(schoolData) {
     var items = Object.values(schoolData.activities);
     for (var i = 0; i < items.length; i++) {
-        var list = document.createElement("p");
-        var newNotice = items[i].activity;
-        list.textContent = newNotice;
-        activities.prepend(list);
+        var heading = document.createElement("h5");
+        var subheading = document.createElement("h6");
+        var newLine = document.createElement("br");
+
+        // changing date format for display
+        var dateEntered = items[i].date;
+        var originaldate = moment(dateEntered, "YYYY-MM-D");
+        var date = originaldate.format("Do MMM");
+
+        // changing time format for display
+        var timeEntered = items[i].time;
+        var originalTime = moment(timeEntered, "hh:mm");
+        var time = originalTime.format("LT");
+
+        // adds actvity to activities display board
+        var newNotice = date + " \t " + items[i].name;
+        var details = time + " @ " + items[i].location;
+        heading.textContent = newNotice;
+        subheading.textContent = details;
+        activities.prepend(heading, subheading, newLine);
     }
 }
 
@@ -149,7 +168,9 @@ function displayCanteenMenu(schoolData) {
     var items = Object.values(schoolData.canteenItems);
     for (var i = 0; i < items.length; i++) {
         var list = document.createElement("p");
-        var newNotice = items[i].itemContent;
+        var newItem = items[i].name;
+        var price = items[i].price;
+        var newNotice = newItem + " \t " + price;
         list.textContent = newNotice;
         canteen.prepend(list);
     }
@@ -157,10 +178,9 @@ function displayCanteenMenu(schoolData) {
 
 // display book details and image of cover based on class input
 function displayBook(classData) {
-    var searchTitle = classData.book.title;
-    var searchPhrase = searchTitle.replace(" ", "-");
-    console.log(searchPhrase);
-    var searchAuthor = schoolData.book.author;
+    var searchTitle = classData.book.name;
+    var searchPhrase = searchTitle.replace(/ /g, "-");
+    var searchAuthor = classData.book.author;
     var queryURL = "http://openlibrary.org/search.json?title=" + searchPhrase;
     $.ajax({
         url: queryURL,
