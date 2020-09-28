@@ -8,7 +8,7 @@ const messages = [];
 const apiKey = "hoTgr9OUIYENlkzXxrIn3Mnx0mFUbggkcMprba6L";
 const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
-const currentYearGroupId = "-MI1t5uvJRVRytonSZ2N";
+let currentYearGroupId = "";
 
 // Elements
 const messageInputEl = document.getElementById("message-input");
@@ -119,6 +119,11 @@ const deleteMesssageHandler = (id) => {
   });
 };
 
+const getClassId = () => {
+  let params = new URLSearchParams(document.location.search.substring(1));
+  currentYearGroupId = params.get("yg");
+};
+
 // Event listners
 messageInputEl.addEventListener("keyup", (event) => {
   messageInputHandler(event.target.value);
@@ -140,6 +145,7 @@ wallContainerEl.addEventListener("click", (event) => {
 });
 
 // Main program
+getClassId();
 fetchMessages();
 
 // Testing
