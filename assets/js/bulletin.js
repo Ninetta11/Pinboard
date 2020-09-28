@@ -83,7 +83,6 @@ function getClassInfo(schoolData) {
             displayWelcome(group);
             displayTimetable(classData);
             displayBook(classData);
-            //displayMessageBoard(classData);
         }
     }
 }
@@ -106,21 +105,29 @@ function displayWelcome(group) {
         greeting = "Good afternoon";
     };
 
-    var newNotice = greeting + " " + group + " \n " + weatherMessage;
-    var list = document.createElement("h4");
+    // displays welcome message
+    var welcomeMessage = document.createElement("h3");
+    var weatherAlert = document.createElement("h3");
     var scheduleHeading = document.createElement("h5");
     scheduleHeading.textContent = "Today's Timetable";
-    var newLine = document.createElement("br");
-    list.textContent = newNotice;
-    welcome.append(list, newLine, scheduleHeading);
+    var newLine = document.createElement("hr");
+    welcomeMessage.textContent = greeting + " " + group;
+    weatherAlert.textContent = weatherMessage;
+    welcome.append(welcomeMessage, weatherAlert, newLine, scheduleHeading);
 }
 
 // displays selected classes schedule
 function displayTimetable(classData) {
     for (var i = 0; i < classData.timetable.length; i++) {
         var newNotice = classData.timetable[i];
-        var list = document.createElement("p");
-        list.textContent = classtimes[i] + " " + newNotice;
+        var list = document.createElement("tr");
+        var classTime = document.createElement("td");
+        var newClass = document.createElement("th");
+
+        classTime.innerHTML = '<i class="' + "fas fa-bell timetable" + '" style="color:blue"></i> ' + classtimes[i];
+        newClass.textContent = newNotice;
+
+        list.append(classTime, newClass)
         timetable.append(list);
     }
 }
@@ -130,9 +137,10 @@ function displayNotices(schoolData) {
     var items = Object.values(schoolData.notices);
     for (var i = 0; i < items.length; i++) {
         var newNotice = items[i].noticeContent;
-        var list = document.createElement("p");
-        list.textContent = newNotice;
-        notice.prepend(list);
+        var list = document.createElement("h5");
+        list.innerHTML = '<i class="' + "fas fa-exclamation-triangle" + '" style="color:red"></i> ' + newNotice;
+        var newLine = document.createElement("br");
+        notice.prepend(list, newLine);
     }
 }
 
@@ -140,14 +148,11 @@ function displayNotices(schoolData) {
 function displayActivities(schoolData) {
     var items = Object.values(schoolData.activities);
     for (var i = 0; i < items.length; i++) {
-        var heading = document.createElement("h5");
-        var subheading = document.createElement("h6");
-        var newLine = document.createElement("br");
 
         // changing date format for display
         var dateEntered = items[i].date;
         var originaldate = moment(dateEntered, "YYYY-MM-D");
-        var date = originaldate.format("Do MMM");
+        var formattedDate = originaldate.format("Do MMM");
 
         // changing time format for display
         var timeEntered = items[i].time;
@@ -155,11 +160,21 @@ function displayActivities(schoolData) {
         var time = originalTime.format("LT");
 
         // adds actvity to activities display board
-        var newNotice = date + " \t " + items[i].name;
-        var details = time + " @ " + items[i].location;
-        heading.textContent = newNotice;
-        subheading.textContent = details;
-        activities.prepend(heading, subheading, newLine);
+        var newNoticeMain = document.createElement("tr");
+        var newNoticeSecond = document.createElement("tr");
+        var blank = document.createElement("td");
+        var newLine = document.createElement("br");
+
+        var heading = document.createElement("th");
+        heading.innerHTML = '<i class="' + "fas fa-star" + '" style="color:green"></i> ' + formattedDate;
+        var event = document.createElement("th");
+        event.textContent = items[i].name;
+        var subheading = document.createElement("td");
+        subheading.textContent = time + " @ " + items[i].location;
+
+        newNoticeMain.append(heading, event);
+        newNoticeSecond.append(blank, subheading, newLine)
+        activities.prepend(newNoticeMain, newNoticeSecond);
     }
 }
 
@@ -167,12 +182,16 @@ function displayActivities(schoolData) {
 function displayCanteenMenu(schoolData) {
     var items = Object.values(schoolData.canteenItems);
     for (var i = 0; i < items.length; i++) {
-        var list = document.createElement("p");
-        var newItem = items[i].name;
-        var price = items[i].price;
-        var newNotice = newItem + " \t " + price;
-        list.textContent = newNotice;
-        canteen.prepend(list);
+
+        var item = document.createElement("tr");
+        var menuItem = document.createElement("td");
+        var itemPrice = document.createElement("td");
+
+        menuItem.textContent = items[i].name;
+        itemPrice.textContent = items[i].price;
+
+        item.append(menuItem, itemPrice)
+        canteen.prepend(item);
     }
 }
 
@@ -206,17 +225,6 @@ function displayBook(classData) {
         }
     })
 };
-
-function displayMessageBoard(classData) {
-    var items = Object.values(classData.messages);
-    for (var i = 0; i < items.length; i++) {
-        var newNotice = Object.values(items[i].messages);
-        var list = document.createElement("p");
-        list.textContent = newNotice;
-        messages.prepend(list);
-    }
-};
-
 
 displayDate();
 displayWeather();
