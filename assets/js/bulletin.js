@@ -27,8 +27,8 @@ function displayDate() {
 
 // retrieves selected class from URL 
 function getClass() {
-    var url = document.URL;
-    selectedClass = url.split('=')[1];
+    let params = new URLSearchParams(document.location.search.substring(1));
+    selectedClass = params.get("yg");
     getSchoolData();
 }
 
