@@ -48,9 +48,13 @@ This responsive application has three main HTML pages with corresponding CSS fil
 | admin.js | assets/js/admin.js |
 | signon.js | assets/js/signon.js |
 
-## Built With
+## Tools
 * [Terminal]
-* [VScode](https://code.visualstudio.com/) - The editor of choice
+* [Visual Studio Code](https://code.visualstudio.com/) - The editor of choice
+* [Postman]
+* [MacDown]
+* [Chrome/Edge DevTools]
+* [GitHub]
 * [Bootstrap](https://getbootstrap.com/docs/4.5/components/alerts/)
 * [Font Awesome](https://getbootstrap.com/docs/4.5/components/alerts/)
 * [W3 HTML validator](https://validator.w3.org/)
@@ -59,6 +63,7 @@ This responsive application has three main HTML pages with corresponding CSS fil
 * [OpenWeatherMap API - Current Weather Data](https://openweathermap.org/api)
 * [Open Library Books API](https://openlibrary.org/dev/docs/api/books)
 * [Firebase API](https://firebase.google.com/docs/reference) - Firebase Realtime Database and Firebase Authentication
+
 
 ## Initial interface 
 ### Screenshots
@@ -69,7 +74,7 @@ This responsive application has three main HTML pages with corresponding CSS fil
 * [Font Awesome License](https://fontawesome.com/license/free) Last updated July 12, 2018
 
 ## Link to the App
-Please visit the <a href="">site</a> hosted on GitHub Pages<hr>
+Please visit the <a href="https://ninetta11.github.io/7-Project-1/">site</a> hosted on GitHub Pages<hr>
 
 ## Authors
 * **HARISH NARAIN** - 
