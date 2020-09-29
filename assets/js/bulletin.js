@@ -206,7 +206,7 @@ function displayBook(classData) {
     var searchTitle = classData.book.name;
     var searchPhrase = searchTitle.replace(/ /g, "-");
     var searchAuthor = classData.book.author;
-    var queryURL = "http://openlibrary.org/search.json?title=" + searchPhrase;
+    var queryURL = "https://openlibrary.org/search.json?title=" + searchPhrase;
     $.ajax({
         url: queryURL,
         method: "GET"
