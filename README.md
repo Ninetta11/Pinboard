@@ -39,12 +39,14 @@ This responsive application has three main HTML pages with corresponding CSS fil
 | index.html | index.html |
 | bulletin.html | bulletin.html |
 | admin.html | admin.html |
+| signon.html | signon.html |
 | style.css | assets/css/style.css |
 | admin.css | assets/css/admin.css |
 | index.js | assets/js/index.js |
 | bulletin.js | assets/js/bulletin.js |
 | messageboard.js | assets/js/messageboard.js |
 | admin.js | assets/js/admin.js |
+| signon.js | assets/js/signon.js |
 
 ## Tools
 * [Terminal]
@@ -60,7 +62,8 @@ This responsive application has three main HTML pages with corresponding CSS fil
 ## APIs
 * [OpenWeatherMap API - Current Weather Data](https://openweathermap.org/api)
 * [Open Library Books API](https://openlibrary.org/dev/docs/api/books)
-* [Google Firebase API](https://firebase.google.com/docs/reference)
+* [Firebase API](https://firebase.google.com/docs/reference) - Firebase Realtime Database and Firebase Authentication
+
 
 ## Initial interface 
 ### Screenshots
@@ -76,11 +79,11 @@ Please visit the <a href="https://ninetta11.github.io/7-Project-1/">site</a> hos
 ## Authors
 * **HARISH NARAIN** - 
 Contact information:
-email@email.com
+harishnarain@gmail.com
 
 * **NINA WELSH** - 
 Contact information:
-email@email.com
+ninawelsh1@outlook.com
 
 * **SARAH RONALD** - 
 Contact information:
