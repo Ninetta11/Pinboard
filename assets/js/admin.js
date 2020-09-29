@@ -9,6 +9,7 @@ const apiSuffix = `?auth=${apiKey}`;
 const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
 
 // Elements
+const adminContainerEl = document.querySelector(".admin-container");
 const yearGroupNameEl = document.getElementById("yearGroupName");
 const confirmYearGroupEl = document.getElementById("confirmYearGroup");
 const yearGroupListingEl = document.querySelector(".yearGroup-listing");
@@ -518,6 +519,50 @@ const showSpinner = () => {
   spinnerContainerEl.appendChild(spinnerEl);
 };
 
+const hideAdmin = () => {
+  adminContainerEl.style.display = "none";
+};
+
+const showAdmin = () => {
+  adminContainerEl.style.display = "initial";
+};
+
+const fetchAll = () => {
+  fetchData("YEAR_GROUP");
+  fetchData("NOTICE");
+  fetchData("CANTEEN");
+  fetchData("ACTIVITIES");
+};
+
+const startLogin = () => {
+  const firebaseConfig = {
+    apiKey: "AIzaSyBnhiM0nSJJ4uZgQhtb2hxX5p9d7pZF6C8",
+    authDomain: "pinboard-5f12a.firebaseapp.com",
+    databaseURL: "https://pinboard-5f12a.firebaseio.com",
+    projectId: "pinboard-5f12a",
+    storageBucket: "pinboard-5f12a.appspot.com",
+    messagingSenderId: "561182051067",
+    appId: "1:561182051067:web:82909361b13e9e8209be5e",
+  };
+  firebase.initializeApp(firebaseConfig);
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in.
+      const displayName = user.displayName;
+      const email = user.email;
+      const emailVerified = user.emailVerified;
+      const photoURL = user.photoURL;
+      const isAnonymous = user.isAnonymous;
+      const uid = user.uid;
+      const providerData = user.providerData;
+      showAdmin();
+      fetchAll();
+    } else {
+      window.location.href = "signon.html";
+    }
+  });
+};
+
 // Event listeners
 confirmTimetableEl.addEventListener("click", (event) => {
   event.preventDefault();
@@ -586,9 +631,11 @@ alertContainerEl.addEventListener("click", () => {
 });
 
 // Main Program
-fetchData("YEAR_GROUP");
-fetchData("NOTICE");
-fetchData("CANTEEN");
-fetchData("ACTIVITIES");
+hideAdmin();
+startLogin();
+// fetchData("YEAR_GROUP");
+// fetchData("NOTICE");
+// fetchData("CANTEEN");
+// fetchData("ACTIVITIES");
 
 // Testing
