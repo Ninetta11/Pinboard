@@ -73,7 +73,7 @@ This responsive application has three main HTML pages with corresponding CSS fil
 
 
 ## Licence
-* [Font Awesome License](https://fontawesome.com/license/free) Last updated July 12, 2018
+* [Apache License 2.0](http://www.apache.org/licenses/)
 
 ## Link to the App
 Please visit the <a href="https://ninetta11.github.io/7-Project-1/">site</a> hosted on GitHub Pages<hr>
