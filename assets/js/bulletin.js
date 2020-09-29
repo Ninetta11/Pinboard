@@ -1,18 +1,19 @@
-var yearGroup = document.getElementById("year-group");
-var date = document.getElementById("date");
-var weather = document.getElementById("weather");
-var weatherIcon = document.getElementById("weather-icon");
-var temp = document.getElementById("temp");
-var welcome = document.getElementById("welcome");
-var timetable = document.getElementById("timetable");
-var notice = document.getElementById("notices");
-var activities = document.getElementById("activities");
-var canteen = document.getElementById("canteen");
-var book = document.getElementById("book");
+var yearGroupEl = document.getElementById("year-group");
+var dateEl = document.getElementById("date");
+var weatherEl = document.getElementById("weather");
+var weatherIconEl = document.getElementById("weather-icon");
+var tempEl = document.getElementById("temp");
+var welcomeEl = document.getElementById("welcome");
+var timetableEl = document.getElementById("timetable");
+var noticeEl = document.getElementById("notices");
+var activitiesEl = document.getElementById("activities");
+var canteenEl = document.getElementById("canteen");
+var bookEl = document.getElementById("book");
 
 var conditions = "";
 var currentTemp = "";
 var weatherMessage = "";
+var loading = false;
 
 var schoolName = "";
 var city = "sydney";
@@ -44,7 +45,7 @@ function displayWeather() {
         var weatherCondition = response.weather[0].icon;
         currentTemp = response.main.temp;
         conditions = response.weather[0].main;
-        weatherIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + weatherCondition + "@2x.png");
+        weatherIconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + weatherCondition + "@2x.png");
         temp.textContent = "Temp: " + Math.round(currentTemp) + "\u00B0C";
 
         // weather based alert
@@ -95,7 +96,7 @@ function getClassInfo(schoolData) {
 // displays welcome message to specific class based on time of day and weather
 function displayWelcome(group) {
     // set year group on navbar
-    yearGroup.textContent = group;
+    yearGroupEl.textContent = group;
 
     // greeting based on time of day
     var greeting = "";
@@ -118,7 +119,7 @@ function displayWelcome(group) {
     var newLine = document.createElement("hr");
     welcomeMessage.textContent = greeting + " " + group;
     weatherAlert.textContent = weatherMessage;
-    welcome.append(welcomeMessage, weatherAlert, newLine, scheduleHeading);
+    welcomeEl.append(welcomeMessage, weatherAlert, newLine, scheduleHeading);
 }
 
 // displays selected classes schedule
@@ -133,7 +134,7 @@ function displayTimetable(classData) {
         newClass.textContent = classData.timetable[i];
 
         list.append(classTime, newClass)
-        timetable.append(list);
+        timetableEl.append(list);
     }
 }
 
@@ -145,7 +146,7 @@ function displayNotices(schoolData) {
         var list = document.createElement("h5");
         list.innerHTML = '<i class="' + "fas fa-exclamation" + '" style="color:red"></i> ' + newNotice;
         var newLine = document.createElement("br");
-        notice.prepend(list, newLine);
+        noticeEl.prepend(list, newLine);
     }
 }
 
@@ -178,8 +179,8 @@ function displayActivities(schoolData) {
 
         newNoticeMain.append(heading, event);
         newNoticeSecond.append(blank, subheading, newLine)
-        activities.prepend(newNoticeMain, newNoticeSecond);
-    }
+        activitiesEl.prepend(newNoticeMain, newNoticeSecond);
+    };
 }
 
 // displays canteen menu
@@ -195,17 +196,16 @@ function displayCanteenMenu(schoolData) {
         itemPrice.textContent = "$" + items[i].price;
 
         item.append(menuItem, itemPrice)
-        canteen.prepend(item);
+        canteenEl.prepend(item);
     }
 }
 
 // display book details and image of cover based on class input
 function displayBook(classData) {
+    showSpinner(bookEl);
     var searchTitle = classData.book.name;
     var searchPhrase = searchTitle.replace(/ /g, "-");
     var searchAuthor = classData.book.author;
-    console.log(searchPhrase);
-    console.log(searchAuthor);
     var queryURL = "http://openlibrary.org/search.json?title=" + searchPhrase;
     $.ajax({
         url: queryURL,
@@ -225,11 +225,36 @@ function displayBook(classData) {
                 var bookcover = document.createElement("img");
                 bookcover.setAttribute("src", "http://covers.openlibrary.org/b/isbn/" + isbn + "-M.jpg");
 
-                book.append(title, author, bookcover);
+                clearSpinner(bookEl);
+                bookEl.append(title, author, bookcover);
                 break;
+            }
+            else {
+                // if book cannot be found in open library API, displays details entered from admin page
+                var title = document.createElement("h5");
+                title.textContent = searchTitle;
+                var author = document.createElement("h6");
+                author.textContent = searchAuthor;
+                clearSpinner(bookEl);
+                bookEl.append(title, author);
             }
         }
     })
+};
+
+function showSpinner(target) {
+    loading = true;
+    var spinnerEl = document.createElement("div");
+    var spinnerContainerEl = document.createElement("div");
+    spinnerEl.classList.add("spinner-border", "text-secondary");
+    spinnerEl.setAttribute("role", "status");
+    spinnerContainerEl.setAttribute("class", "my-2 my-sm-0 spinner-container");
+    spinnerContainerEl.appendChild(spinnerEl);
+    target.appendChild(spinnerContainerEl);
+};
+
+function clearSpinner(target) {
+    target.innerHTML = "";
 };
 
 displayDate();
