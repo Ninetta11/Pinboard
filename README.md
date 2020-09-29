@@ -76,7 +76,7 @@ email@email.com
 
 * **NINA WELSH** - 
 Contact information:
-email@email.com
+ninawelsh1@outlook.com
 
 * **SARAH RONALD** - 
 Contact information:
