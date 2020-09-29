@@ -36,18 +36,38 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://kit.fontawesome.com/60de1ab8c4.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
       <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.html">Pinboard</a>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="bulletin.html">Class Pinboard</a>
+        <div class="spinner-container mx-auto"></div>
+        <ul class="navbar-nav">
+          <li class="dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              id="navbarDropdown"
+              data-toggle="dropdown"
+            >
+              <i class="fas fa-user"></i>
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right position-absolute"
+              id="navbarDropdown"
+            >
+              <p class="ml-1 mr-1" id="username"></p>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" id="signout-button"
+                ><i class="fas fa-sign-out-alt mr-1"></i>Sign Out</a
+              >
+            </div>
           </li>
-          <li class="nav-item"></li>
         </ul>
-        <div class="my-2 my-sm-0 spinner-container"></div>
       </nav>
     </header>
     <main class="admin-main">

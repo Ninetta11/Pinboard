@@ -10,6 +10,8 @@ const apiUrlPrefix = "https://pinboard-5f12a.firebaseio.com/";
 
 // Elements
 const adminContainerEl = document.querySelector(".admin-container");
+const usernameEl = document.getElementById("username");
+const signOutEl = document.getElementById("signout-button");
 const yearGroupNameEl = document.getElementById("yearGroupName");
 const confirmYearGroupEl = document.getElementById("confirmYearGroup");
 const yearGroupListingEl = document.querySelector(".yearGroup-listing");
@@ -534,6 +536,10 @@ const fetchAll = () => {
   fetchData("ACTIVITIES");
 };
 
+const updateUserInfo = (username) => {
+  usernameEl.textContent = username;
+};
+
 const startLogin = () => {
   const firebaseConfig = {
     apiKey: "AIzaSyBnhiM0nSJJ4uZgQhtb2hxX5p9d7pZF6C8",
@@ -555,12 +561,17 @@ const startLogin = () => {
       const isAnonymous = user.isAnonymous;
       const uid = user.uid;
       const providerData = user.providerData;
+      updateUserInfo(email);
       showAdmin();
       fetchAll();
     } else {
       window.location.href = "signon.html";
     }
   });
+};
+
+const logoutHandler = () => {
+  firebase.auth().signOut();
 };
 
 // Event listeners
@@ -626,6 +637,10 @@ yearGroupListingEl.addEventListener("click", (event) => {
   }
 });
 
+signOutEl.addEventListener("click", () => {
+  logoutHandler();
+});
+
 alertContainerEl.addEventListener("click", () => {
   clearAlert();
 });
@@ -633,9 +648,5 @@ alertContainerEl.addEventListener("click", () => {
 // Main Program
 hideAdmin();
 startLogin();
-// fetchData("YEAR_GROUP");
-// fetchData("NOTICE");
-// fetchData("CANTEEN");
-// fetchData("ACTIVITIES");
 
 // Testing
