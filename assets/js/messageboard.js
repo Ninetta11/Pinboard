@@ -72,12 +72,12 @@ const postMessageHandler = (id, message) => {
 const renderMessages = () => {
   messages.forEach((message) => {
     const messageRowEl = document.createElement("div");
-    messageRowEl.classList.add("row", "p-2");
+    messageRowEl.classList.add("row");
     messageRowEl.setAttribute("data-value", message.id);
     const cardEl = document.createElement("div");
-    cardEl.classList.add("card");
+    cardEl.classList.add("card", "message-body");
     const cardBodyEl = document.createElement("div");
-    cardBodyEl.classList.add("card-body");
+    cardBodyEl.classList.add("card-body", "message-text");
     cardBodyEl.textContent = message.messageText;
     cardEl.appendChild(cardBodyEl);
     const deleteIconEl = document.createElement("i");
