@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/school-logo.png"
+      type="image"
+    />
+    <title>Canteen Administration</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/60de1ab8c4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main class="admin-main">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+      >
+        <h1 class="h2">Canteen Administration</h1>
+      </div>
+      <div class="alert-container"></div>
+      <div class="container admin-container">
+        <div class="container config-container">
+          <span class="spinner-container mx-auto"></span>
+          <div class="row mt-5">
+            <div class="col-md-11">
+              <h3>Canteen Items</h3>
+            </div>
+            <div class="col-md-1">
+              <div class="btn-toolbar mb-2" role="toolbar">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary canteen-add-button"
+                  id="addCanteen"
+                  data-toggle="modal"
+                  data-target="#addCanteenModal"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="container canteen-container admin-section"
+            id="canteen-container"
+          >
+            <div class="col-md-12 cq-col" id="cq-col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Canteen Item</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="canteen-listing" id="canteen-listing"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Canteen Admin -->
+      <div class="modal fade" id="addCanteenModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modalTitle">Add Canteen Item</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="addCanteenForm">
+                  <div class="form-group">
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="canteenItemName">Enter Item Name:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="text"
+                          id="canteenItemName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="row cq-row">
+                      <div class="col-md-6">
+                        <label for="canteenItemPrice">Enter Price:</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input
+                          type="number"
+                          id="canteenItemPrice"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm"
+                    id="confirmCanteen"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css"
+  />
+  <script src="assets/js/adminutility.js"></script>
+  <script src="assets/js/canteenadmin.js"></script>
+</html>
