@@ -43,8 +43,21 @@
   </head>
   <body>
     <header>
-      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <nav
+        class="navbar sticky-top flex-md-nowrap navbar-expand-lg navbar-dark bg-dark shadow"
+      >
         <a class="navbar-brand" href="index.html">Pinboard</a>
+        <button
+          class="navbar-toggler position-absolute d-md-none collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="spinner-container mx-auto"></div>
         <ul class="navbar-nav">
           <li class="dropdown">
@@ -70,477 +83,69 @@
         </ul>
       </nav>
     </header>
-    <main class="admin-main">
-      <div class="alert-container"></div>
-      <div class="container admin-container">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="pb-title">Pinboard Administration</h1>
-          </div>
-        </div>
-        <div class="container config-container">
-          <div class="row mt-2">
-            <div class="col-md-11">
-              <h3>Year Groups:</h3>
-            </div>
-            <div class="col-md-1">
-              <div class="btn-toolbar mb-2" role="toolbar">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-primary add-button float-right"
-                  id="addYearGroup"
-                  data-toggle="modal"
-                  data-target="#addYearGroupModal"
+
+    <div class="container-fluid admin-container">
+      <div class="row">
+        <nav
+          id="sidebarMenu"
+          class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+        >
+          <div class="sidebar-sticky pt-3">
+            <ul class="nav flex-column sidebar-items">
+              <li class="nav-item">
+                <a
+                  class="nav-link active sidebar-item"
+                  href="#"
+                  data-target="adminhome"
+                  >Home</a
                 >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="container customYearGroups" id="customYearGroups">
-            <div class="col-md-12 cq-col" id="cq-col">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Year Group</th>
-                    <th scope="col">Term Book</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody class="yearGroup-listing" id="yearGroup-listing"></tbody>
-              </table>
-            </div>
-          </div>
-          <div class="row mt-2 mt-5">
-            <div class="col-md-11">
-              <h3>Notices:</h3>
-            </div>
-            <div class="col-md-1">
-              <div class="btn-toolbar mb-2" role="toolbar">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-primary notice-add-button"
-                  id="addNotice"
-                  data-toggle="modal"
-                  data-target="#addNoticeModal"
+              </li>
+              <li class="nav-item">
+                <a class="nav-link sidebar-item" href="#" data-target="ygadmin"
+                  >Year Groups</a
                 >
-                  Add
-                </button>
-              </div>
-            </div>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link sidebar-item"
+                  href="#"
+                  data-target="noticeadmin"
+                  >Notices</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link sidebar-item"
+                  href="#"
+                  data-target="canteenadmin"
+                  >Canteen</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link sidebar-item"
+                  href="#"
+                  data-target="activitiesadmin"
+                  >Activities</a
+                >
+              </li>
+            </ul>
           </div>
+        </nav>
+        <main class="admin-main col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          <div class="alert-container"></div>
           <div
-            class="container notice-container admin-section"
-            id="notice-container"
+            class="container admin-container embed-responsive embed-responsive-16by9"
           >
-            <div class="col-md-12 cq-col" id="cq-col">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Notice</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody class="notice-listing" id="notice-listing"></tbody>
-              </table>
-            </div>
+            <iframe
+              class="embed-responsive-item admin-panel"
+              src="adminhome.html"
+              frameborder="0"
+            ></iframe>
           </div>
-          <div class="row mt-5">
-            <div class="col-md-11">
-              <h3>Canteen:</h3>
-            </div>
-            <div class="col-md-1">
-              <div class="btn-toolbar mb-2" role="toolbar">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-primary canteen-add-button"
-                  id="addCanteen"
-                  data-toggle="modal"
-                  data-target="#addCanteenModal"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-          <div
-            class="container canteen-container admin-section"
-            id="canteen-container"
-          >
-            <div class="col-md-12 cq-col" id="cq-col">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Canteen Item</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody class="canteen-listing" id="canteen-listing"></tbody>
-              </table>
-            </div>
-          </div>
-          <div class="row mt-5">
-            <div class="col-md-11">
-              <h3>Activities:</h3>
-            </div>
-            <div class="col-md-1">
-              <div class="btn-toolbar mb-2" role="toolbar">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-primary activity-add-button"
-                  id="addActivity"
-                  data-toggle="modal"
-                  data-target="#addActivityModal"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-          <div
-            class="container activities-container admin-section"
-            id="activities-container"
-          >
-            <div class="col-md-12 cq-col" id="cq-col">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Activity</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody
-                  class="activities-listing"
-                  id="activities-listing"
-                ></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        </main>
       </div>
-
-      <!-- Activities Admin -->
-      <div class="modal fade" id="addActivityModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">Add Activity</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <form id="addActivityForm">
-                  <div class="form-group">
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="activityName">Enter Activity:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="text"
-                          id="activityName"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="activityLocation">Enter Location:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="text"
-                          id="activityLocation"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="activityDate">Enter Date:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="date"
-                          id="activityDate"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="activityTime">Enter Time:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="time"
-                          id="activityTime"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-sm"
-                    id="confirmActivity"
-                  >
-                    Add
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Canteen Admin -->
-      <div class="modal fade" id="addCanteenModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">Add Canteen Item</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <form id="addCanteenForm">
-                  <div class="form-group">
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="canteenItemName">Enter Item Name:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="text"
-                          id="canteenItemName"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="canteenItemPrice">Enter Price:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="number"
-                          id="canteenItemPrice"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-sm"
-                    id="confirmCanteen"
-                  >
-                    Add
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Notice Admin -->
-      <div class="modal fade" id="addNoticeModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">Add Notice</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <form id="addNoticeForm">
-                  <div class="form-group">
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="noticeText">Enter Notice:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <textarea
-                          id="noticeText"
-                          class="form-control"
-                          rows="2"
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-sm"
-                    id="confirmNotice"
-                  >
-                    Add
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Custom Year Group Modal -->
-      <div
-        class="modal fade"
-        id="addYearGroupModal"
-        tabindex="-1"
-        role="dialog"
-      >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">Add Year Group</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <form id="addYearGroupForm">
-                  <div class="form-group">
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="yearGroupName"
-                          >Enter Year Group Name:</label
-                        >
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="text"
-                          id="yearGroupName"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn btn-primary btn-sm"
-                      id="confirmYearGroup"
-                    >
-                      Add
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-secondary btn-sm"
-                      data-dismiss="modal"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Timetable Modal -->
-      <div class="modal fade" id="timetableModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">Manage Timetable</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <form id="timetableForm">
-                  <div class="form-group timetable-form"></div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-sm"
-                    id="confirmTimetable"
-                  >
-                    Save
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Manage Book Modal -->
-      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modalTitle">Manage Term Book</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <form id="bookForm">
-                  <div class="form-group book-form">
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="bookName">Enter Book Name:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" id="bookName" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="row cq-row">
-                      <div class="col-md-6">
-                        <label for="bookAuthor">Enter Author:</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input
-                          type="text"
-                          id="bookAuthor"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-sm"
-                    id="confirmBook"
-                  >
-                    Save
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+    </div>
   </body>
   <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
 
