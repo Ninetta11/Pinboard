@@ -40,6 +40,11 @@ This responsive application has three main HTML pages with corresponding CSS fil
 | bulletin.html | bulletin.html |
 | admin.html | admin.html |
 | signon.html | signon.html |
+| adminhome.html | adminhome.html |
+| activitiesadmin.html | activitiesadmin.html |
+| canteenadmin.html | canteenadmin.html |
+| noticeadmin.html | noticeadmin.html |
+| ygadmin.html | ygadmin.html |
 | style.css | assets/css/style.css |
 | admin.css | assets/css/admin.css |
 | index.js | assets/js/index.js |
@@ -47,14 +52,20 @@ This responsive application has three main HTML pages with corresponding CSS fil
 | messageboard.js | assets/js/messageboard.js |
 | admin.js | assets/js/admin.js |
 | signon.js | assets/js/signon.js |
+| adminutility.js | assets/js/adminutility.js |
+| activitiesadmin.js | assets/js/activitiesadmin.js |
+| canteenadmin.js | assets/js/canteenadmin.js |
+| noticeadmin.js | assets/js/noticeadmin.js |
+| ygadmin.js | assets/js/ygadmin.js |
+
 
 ## Tools
-* [Terminal]
+* [iTerm2](https://www.iterm2.com/)
 * [Visual Studio Code](https://code.visualstudio.com/) - The editor of choice
-* [Postman]
-* [MacDown]
-* [Chrome/Edge DevTools]
-* [GitHub]
+* [Postman](https://www.postman.com/)
+* [MacDown](https://macdown.uranusjr.com/)
+* [Chrome/Edge DevTools](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide)
+* [GitHub](https://github.com/)
 * [Bootstrap](https://getbootstrap.com/docs/4.5/components/alerts/)
 * [Font Awesome](https://getbootstrap.com/docs/4.5/components/alerts/)
 * [W3 HTML validator](https://validator.w3.org/)
