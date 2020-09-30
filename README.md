@@ -82,7 +82,7 @@ This responsive application has three main HTML pages with corresponding CSS fil
 ![Student-view Demo](https://user-images.githubusercontent.com/65838273/94547772-17f03b80-0293-11eb-9474-cf95491364a2.gif)
 
 #### Administration Access
-![Admin-view Demo](https://user-images.githubusercontent.com/65838273/94547779-19b9ff00-0293-11eb-9b2f-03396e295655.gif)
+![Admin-view Demo2](https://user-images.githubusercontent.com/65838273/94749935-52a7c000-03c8-11eb-8e44-b5f6824b52aa.gif)
 
 
 ## Licence
