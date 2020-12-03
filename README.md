@@ -1,5 +1,4 @@
-# 7-Project-1
-## Pinboard
+# Pinboard
 Pinboard is an online school bulletin board that displays year group specific information for students. High school students are notoriously bad at remembering information and dates that are important to the running of everyday school life. This app is designed to provide school admin an simple and effective way to regularly post this information to students to one location so that it is easy to access and use for even the most unorganised teenager!
 
 ## Project Objective
