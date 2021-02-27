@@ -32,6 +32,10 @@ SO THAT the relevant information pertaining to school life is distributed to the
 
 This responsive application has three main HTML pages with corresponding CSS files and JavaScript.
 
+## Usage
+
+For access to the Administration page, please use the following username and ID:- User ID for Admin: spades@contoso.com Password: 4arth7ader&&
+
 ### Files included
 | File | Relative Path |
 | ------ | ------ |
